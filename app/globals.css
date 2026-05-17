@@ -1,26 +1,134 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ic-red: #ff2a00;
+  --ic-black: #050505;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--ic-red);
+  color: var(--ic-black);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::selection {
+  background: #000;
+  color: var(--ic-red);
+}
+
+@utility writing-mode-vertical {
+  writing-mode: vertical-rl;
+}
+
+/* Style-across */
+
+
+
+.text-stroke-black {
+  -webkit-text-stroke: 1px var(--ic-black);
+  color: transparent;
+}
+
+.inline-box {
+  display: inline-block;
+  border: 1px solid var(--ic-black);
+  padding: 0.04em 0.18em 0.02em;
+  line-height: 0.95;
+}
+
+
+.inline-box-thin-tight {
+  display: inline-block;
+  border: 1px solid var(--ic-black);
+  padding: 0.02em 0.12em 0.01em;
+  line-height: 0.88;
+  vertical-align: baseline;
+  margin-left: -0.02em;
+}
+
+.inline-slash::before {
+  content: "// ";
+}
+
+.inline-tag {
+  display: inline-block;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.2em 0.45em;
+  border: 1px solid var(--ic-black);
+  vertical-align: middle;
+}
+
+.inline-cut {
+  position: relative;
+  display: inline-block;
+  padding-right: 0.08em;
+}
+
+.inline-cut::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.08em;
+  width: 100%;
+  height: 0.12em;
+  background: var(--ic-black);
+}
+
+.inline-bar {
+  position: relative;
+  display: inline-block;
+  padding-left: 0.22em;
+}
+
+.inline-bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 2px;
+  background: var(--ic-black);
+}
+
+.inline-mono {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kicker-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.kicker-line::before {
+  content: "";
+  width: 2.5rem;
+  height: 1px;
+  background: var(--ic-black);
+}
+
+/* Style-across */
+
+
