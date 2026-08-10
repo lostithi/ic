@@ -33,7 +33,10 @@ export default function MobileNav() {
           >
             <AtlasMark className="h-7 w-7" />
             <span className="font-display text-lg font-bold uppercase italic tracking-[-0.04em]">
-              {brand.name}
+              {brand.shortName}
+              <span className="ml-1.5 text-white/55 not-italic tracking-[0.12em]">
+                Studio
+              </span>
             </span>
           </a>
 

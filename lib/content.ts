@@ -4,7 +4,7 @@ export const siteContent = {
   hero: {
     code: brand.code,
     titleTop: "SPINE",
-    titleBottom: "STRUCTURE",
+    titleBottom: "STUDIO",
     description: brand.offer.support,
   },
   status: {

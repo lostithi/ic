@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Spine";
+export const alt = "Spine Studio";
 export const size = {
   width: 1200,
   height: 630,
@@ -63,7 +63,7 @@ export default function OpenGraphImage() {
               display: "flex",
             }}
           >
-            Structure
+            Studio
           </div>
         </div>
 

@@ -18,7 +18,7 @@ export default function LeftRail() {
         >
           <AtlasMark className="h-9 w-9 text-[var(--spine-white)] transition-transform duration-300 group-hover:scale-105" />
           <span className="font-display text-[13px] font-bold uppercase italic tracking-[-0.04em]">
-            {brand.name}
+            {brand.shortName}
           </span>
         </a>
 

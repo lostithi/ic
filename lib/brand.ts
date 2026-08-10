@@ -1,12 +1,12 @@
 export const brand = {
-  name: "Spine",
+  name: "Spine Studio",
   shortName: "Spine",
   code: "[SP-01]",
   url: "https://spine.studio",
   email: "hello@spine.studio",
   tagline: "Web, SEO, and strategy with a backbone.",
   description:
-    "Spine builds the digital structure behind ambitious brands: focused websites, search systems, and positioning that stand upright.",
+    "Spine Studio builds the digital structure behind ambitious brands: focused websites, search systems, and positioning that stand upright.",
   colors: {
     black: "#050505",
     white: "#f4f4f1",
@@ -29,7 +29,7 @@ export const brand = {
     primaryHref: "#brief",
   },
   socialShare: {
-    title: "Spine",
+    title: "Spine Studio",
     text: "Web, SEO, and strategy with a backbone.",
   },
 } as const;
