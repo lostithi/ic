@@ -1,5 +1,3 @@
-"use server";
-
 import { Resend } from "resend";
 import {
   payloadFromFormData,
@@ -9,21 +7,15 @@ import {
 import { brand } from "@/lib/brand";
 import { siteContent } from "@/lib/content";
 
-export type ContactFormState = {
-  status: "idle" | "success" | "error";
+export type ContactResult = {
+  status: "success" | "error";
   message: string;
   fieldErrors?: ContactFieldErrors;
 };
 
-export const contactInitialState: ContactFormState = {
-  status: "idle",
-  message: "",
-};
-
-export async function submitContactForm(
-  _prevState: ContactFormState,
+export async function processContactForm(
   formData: FormData,
-): Promise<ContactFormState> {
+): Promise<ContactResult> {
   const payload = payloadFromFormData(formData);
 
   if (payload.honeypot) {
@@ -45,7 +37,8 @@ export async function submitContactForm(
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.CONTACT_TO_EMAIL || siteContent.contact.email;
   const fromEmail =
-    process.env.CONTACT_FROM_EMAIL || "Spine <onboarding@resend.dev>";
+    process.env.CONTACT_FROM_EMAIL ||
+    "Spine Studio <onboarding@resend.dev>";
 
   if (!apiKey) {
     console.error("RESEND_API_KEY is missing");
@@ -63,7 +56,7 @@ export async function submitContactForm(
       replyTo: payload.email,
       subject: `New project inquiry from ${payload.name}`,
       text: [
-        "New Spine inquiry",
+        "New Spine Studio inquiry",
         "",
         `Name: ${payload.name}`,
         `Email: ${payload.email}`,

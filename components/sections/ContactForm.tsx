@@ -1,19 +1,69 @@
 "use client";
 
-import { useActionState } from "react";
-import {
-  contactInitialState,
-  submitContactForm,
-} from "@/app/actions/contact";
+import { useState, type FormEvent } from "react";
+import type { ContactFieldErrors } from "@/lib/contact";
+import { brand } from "@/lib/brand";
+
+type FormState = {
+  status: "idle" | "success" | "error";
+  message: string;
+  fieldErrors?: ContactFieldErrors;
+};
 
 const labelClassName =
   "mb-2 block font-mono-ui text-[11px] uppercase tracking-[0.2em]";
 
 export default function ContactForm() {
-  const [state, formAction, pending] = useActionState(
-    submitContactForm,
-    contactInitialState,
-  );
+  const [state, setState] = useState<FormState>({
+    status: "idle",
+    message: "",
+  });
+  const [pending, setPending] = useState(false);
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (pending) return;
+
+    const form = event.currentTarget;
+    const body = new FormData(form);
+
+    setPending(true);
+    setState({ status: "idle", message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body,
+      });
+
+      let result: FormState;
+      try {
+        result = (await response.json()) as FormState;
+      } catch {
+        result = {
+          status: "error",
+          message: `Could not send right now. Email us directly at ${brand.email}.`,
+        };
+      }
+
+      setState({
+        status: result.status === "success" ? "success" : "error",
+        message:
+          result.message ||
+          (result.status === "success"
+            ? "Message received. We'll get back to you shortly."
+            : `Could not send right now. Email us directly at ${brand.email}.`),
+        fieldErrors: result.fieldErrors,
+      });
+    } catch {
+      setState({
+        status: "error",
+        message: `Could not send right now. Email us directly at ${brand.email}.`,
+      });
+    } finally {
+      setPending(false);
+    }
+  }
 
   if (state.status === "success") {
     return (
@@ -32,7 +82,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-5" noValidate>
+    <form onSubmit={onSubmit} className="space-y-5" noValidate>
       <div className="grid gap-5 md:grid-cols-2">
         <div>
           <label htmlFor="name" className={labelClassName}>
@@ -177,7 +227,11 @@ export default function ContactForm() {
         </p>
       ) : null}
 
-      <button type="submit" disabled={pending} className="btn-solid disabled:opacity-60">
+      <button
+        type="submit"
+        disabled={pending}
+        className="btn-solid disabled:opacity-60"
+      >
         {pending ? "Sending..." : "Send project brief"}
       </button>
     </form>
