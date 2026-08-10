@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 48" fill="#f4f4f1">
+  <!-- Sharp S-curve blade column -->
+  <path transform="translate(20.2 4) rotate(22)" d="M -5.85 0 L 0 -1.55 L 5.85 0 L 0 1.55 Z"/>
+  <path transform="translate(22.9 8) rotate(17.8)" d="M -6.95 0 L 0 -1.7 L 6.95 0 L 0 1.7 Z"/>
+  <path transform="translate(25.1 12) rotate(11.5)" d="M -7.85 0 L 0 -1.8 L 7.85 0 L 0 1.8 Z"/>
+  <path transform="translate(26.2 16) rotate(4.2)" d="M -8.4 0 L 0 -1.9 L 8.4 0 L 0 1.9 Z"/>
+  <path transform="translate(26.1 20) rotate(-3.5)" d="M -8.55 0 L 0 -1.9 L 8.55 0 L 0 1.9 Z"/>
+  <path transform="translate(24.7 24) rotate(-11)" d="M -8.4 0 L 0 -1.9 L 8.4 0 L 0 1.9 Z"/>
+  <path transform="translate(22.2 28) rotate(-17.2)" d="M -7.85 0 L 0 -1.8 L 7.85 0 L 0 1.8 Z"/>
+  <path transform="translate(19.1 32) rotate(-21)" d="M -6.95 0 L 0 -1.7 L 6.95 0 L 0 1.7 Z"/>
+  <path transform="translate(16.3 36) rotate(-22)" d="M -6.1 0 L 0 -1.6 L 6.1 0 L 0 1.6 Z"/>
+  <path transform="translate(14.4 40) rotate(-17.8)" d="M -5.5 0 L 0 -1.55 L 5.5 0 L 0 1.55 Z"/>
+  <path transform="translate(13.6 44) rotate(-11.5)" d="M -5.1 0 L 0 -1.5 L 5.1 0 L 0 1.5 Z"/>
+</svg>

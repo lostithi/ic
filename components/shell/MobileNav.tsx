@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AtlasMark, MenuBones, VertebraGlyph } from "@/components/shell/BoneGlyph";
+import Logo from "@/components/brand/Logo";
+import { MenuBones, VertebraGlyph } from "@/components/shell/BoneGlyph";
 import { useActiveSection } from "@/components/shell/useActiveSection";
 import { brand } from "@/lib/brand";
 import { navItems } from "@/lib/nav";
@@ -28,16 +29,10 @@ export default function MobileNav() {
           <a
             href="/"
             onClick={close}
-            className="flex items-center gap-2.5"
+            className="flex items-center"
             aria-label={`${brand.name} home`}
           >
-            <AtlasMark className="h-7 w-7" />
-            <span className="font-display text-lg font-bold uppercase italic tracking-[-0.04em]">
-              {brand.shortName}
-              <span className="ml-1.5 text-white/55 not-italic tracking-[0.12em]">
-                Studio
-              </span>
-            </span>
+            <Logo markClassName="h-9 w-7" className="text-[0.95rem]" />
           </a>
 
           <button

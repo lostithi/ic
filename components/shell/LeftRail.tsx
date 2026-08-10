@@ -1,6 +1,7 @@
 "use client";
 
-import { AtlasMark, VertebraGlyph } from "@/components/shell/BoneGlyph";
+import { LogoMark } from "@/components/brand/Logo";
+import { VertebraGlyph } from "@/components/shell/BoneGlyph";
 import { useActiveSection } from "@/components/shell/useActiveSection";
 import { brand } from "@/lib/brand";
 import { navItems } from "@/lib/nav";
@@ -13,11 +14,11 @@ export default function LeftRail() {
       <div className="relative flex h-full flex-col">
         <a
           href="/"
-          className="bone-rail-brand group flex flex-col items-center gap-2 px-2 py-5"
+          className="bone-rail-brand group flex flex-col items-center gap-2.5 px-2 py-5"
           aria-label={`${brand.name} home`}
         >
-          <AtlasMark className="h-9 w-9 text-[var(--spine-white)] transition-transform duration-300 group-hover:scale-105" />
-          <span className="font-display text-[13px] font-bold uppercase italic tracking-[-0.04em]">
+          <LogoMark className="h-12 w-10 text-[var(--spine-white)] transition-transform duration-300 group-hover:scale-105" />
+          <span className="font-display text-[11px] font-medium uppercase tracking-[0.28em]">
             {brand.shortName}
           </span>
         </a>
