@@ -1,9 +1,9 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, useTexture } from "@react-three/drei";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
+import { SkullTorso } from "@/components/spine/SpineModels";
 
 function usePointerTarget() {
   const target = useRef({ x: 0, y: 0 });
@@ -21,67 +21,32 @@ function usePointerTarget() {
   return target;
 }
 
-function SpinePlanes({
+function FloatingSkull({
   pointer,
 }: {
   pointer: React.MutableRefObject<{ x: number; y: number }>;
 }) {
   const group = useRef<THREE.Group>(null);
-  const [anatomy, sigil, path] = useTexture([
-    "/spine/anatomy.png",
-    "/spine/sigil.png",
-    "/spine/path.png",
-  ]);
-
-  useEffect(() => {
-    [anatomy, sigil, path].forEach((texture) => {
-      texture.colorSpace = THREE.SRGBColorSpace;
-      texture.anisotropy = 8;
-    });
-  }, [anatomy, sigil, path]);
 
   useFrame((state) => {
     if (!group.current) return;
     const t = state.clock.getElapsedTime();
     group.current.rotation.y = THREE.MathUtils.lerp(
       group.current.rotation.y,
-      pointer.current.x * 0.28,
-      0.045,
+      pointer.current.x * 0.5 + t * 0.12,
+      0.05,
     );
     group.current.rotation.x = THREE.MathUtils.lerp(
       group.current.rotation.x,
-      -pointer.current.y * 0.14,
-      0.045,
+      -0.15 - pointer.current.y * 0.2,
+      0.05,
     );
-    group.current.position.y = Math.sin(t * 0.35) * 0.08;
+    group.current.position.y = Math.sin(t * 0.4) * 0.1;
   });
 
   return (
-    <group ref={group}>
-      <Float speed={0.6} rotationIntensity={0.08} floatIntensity={0.25}>
-        <mesh position={[0, 0.1, -1.5]} scale={[8.4, 5.4, 1]}>
-          <planeGeometry />
-          <meshBasicMaterial map={path} transparent opacity={0.22} depthWrite={false} />
-        </mesh>
-      </Float>
-
-      <Float speed={0.9} rotationIntensity={0.15} floatIntensity={0.4}>
-        <mesh position={[0, 0.05, 0]} scale={[2.7, 4.5, 1]}>
-          <planeGeometry />
-          <meshBasicMaterial map={anatomy} transparent toneMapped={false} />
-        </mesh>
-      </Float>
-
-      <Float speed={1.1} rotationIntensity={0.2} floatIntensity={0.55}>
-        <mesh
-          position={[1.55, 0.15, 0.55]}
-          scale={[1.35, 2.8, 1]}
-          rotation={[0, -0.25, 0.04]}
-        >
-          <planeGeometry />
-          <meshBasicMaterial map={sigil} transparent opacity={0.78} toneMapped={false} />
-        </mesh>
-      </Float>
+    <group ref={group} position={[0, -0.2, 0]} scale={1.15}>
+      <SkullTorso />
     </group>
   );
 }
@@ -91,16 +56,18 @@ export default function SpineCanvas() {
 
   return (
     <Canvas
-      camera={{ position: [0, 0, 4.2], fov: 42 }}
+      camera={{ position: [0, 0.4, 5.2], fov: 40 }}
       dpr={[1, 1.75]}
       gl={{ antialias: true, alpha: true }}
       style={{ width: "100%", height: "100%" }}
     >
       <color attach="background" args={["#050505"]} />
-      <fog attach="fog" args={["#050505", 4.5, 9]} />
-      <ambientLight intensity={0.85} />
+      <fog attach="fog" args={["#050505", 6, 14]} />
+      <ambientLight intensity={0.35} />
+      <directionalLight position={[4, 5, 4]} intensity={1.3} />
+      <directionalLight position={[-4, 0, -2]} intensity={0.4} color="#999" />
       <Suspense fallback={null}>
-        <SpinePlanes pointer={pointer} />
+        <FloatingSkull pointer={pointer} />
       </Suspense>
     </Canvas>
   );

@@ -1,23 +1,11 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const SpineCanvas = dynamic(() => import("@/components/spine/SpineCanvas"), {
   ssr: false,
-  loading: () => (
-    <div className="relative h-full w-full overflow-hidden bg-black">
-      <Image
-        src="/spine/anatomy.png"
-        alt=""
-        fill
-        priority
-        className="object-contain opacity-80"
-        sizes="100vw"
-      />
-    </div>
-  ),
+  loading: () => <div className="h-full w-full bg-black" />,
 });
 
 export default function SpineEnvironment({
@@ -38,28 +26,14 @@ export default function SpineEnvironment({
   return (
     <div className={`absolute inset-0 overflow-hidden bg-black ${className}`}>
       {reduceMotion ? (
-        <div className="relative h-full w-full">
-          <Image
-            src="/spine/path.png"
-            alt=""
-            fill
-            className="object-cover opacity-25"
-            sizes="100vw"
-          />
-          <Image
-            src="/spine/anatomy.png"
-            alt=""
-            fill
-            priority
-            className="object-contain opacity-90"
-            sizes="100vw"
-          />
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="h-48 w-px bg-white/50" />
         </div>
       ) : (
         <SpineCanvas />
       )}
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_18%,rgba(5,5,5,0.55)_70%,rgba(5,5,5,0.92)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_18%,rgba(5,5,5,0.45)_70%,rgba(5,5,5,0.85)_100%)]" />
       <div className="spine-grain" />
       <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(to_bottom,rgba(244,244,241,0.35)_1px,transparent_1px)] [background-size:100%_4px]" />
     </div>

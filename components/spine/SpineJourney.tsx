@@ -77,36 +77,24 @@ export default function SpineJourney({
     <div className="relative">
       <div className="pointer-events-none fixed inset-0 z-0 md:left-[72px]">
         {reduceMotion ? (
-          <div className="relative h-full w-full overflow-hidden bg-black">
-            <Image
-              src="/spine/path.png"
-              alt=""
-              fill
-              className="object-cover opacity-20"
-              sizes="100vw"
-            />
-            <Image
-              src="/spine/anatomy.png"
-              alt=""
-              fill
-              priority
-              className="object-contain"
+          <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-black">
+            <div
+              className="h-[70vmin] w-[2px] bg-white/40"
               style={{
-                opacity: progressUi < 0.42 ? 0.85 : Math.max(0, 1 - (progressUi - 0.42) * 4),
-                transform: `translateY(${Math.min(progressUi, 0.42) * -12}%) scale(1.05)`,
+                transform: `scaleY(${0.55 + progressUi * 0.7}) rotate(${progressUi * 18}deg)`,
+                transformOrigin: "top center",
               }}
-              sizes="100vw"
             />
             <Image
               src="/spine/skull.png"
               alt=""
-              fill
-              className="object-contain object-top"
+              width={280}
+              height={360}
+              className="pointer-events-none absolute opacity-30"
               style={{
-                opacity: progressUi < 0.42 ? 0 : Math.min(1, (progressUi - 0.42) * 3.2),
-                transform: `translateY(${(progressUi - 0.42) * -28}%) scale(1.12)`,
+                opacity: progressUi < 0.42 ? 0.08 : 0.28 + (progressUi - 0.42) * 0.4,
+                transform: `translateY(${(1 - progressUi) * 40}px) rotate(${progressUi * 25}deg)`,
               }}
-              sizes="100vw"
             />
           </div>
         ) : (
