@@ -2,8 +2,8 @@ export const brand = {
   name: "Spine Studio",
   shortName: "Spine",
   code: "[SP-01]",
-  url: "https://spine.studio",
-  email: "hello@spine.studio",
+  url: "https://spinestudio.uk",
+  email: "hello@spinestudio.uk",
   tagline: "Web, SEO, and strategy with a backbone.",
   description:
     "Spine Studio builds the digital structure behind ambitious brands: focused websites, search systems, and positioning that stand upright.",

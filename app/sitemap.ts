@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { caseStudies } from "@/lib/work";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://spine.studio";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://spinestudio.uk";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
