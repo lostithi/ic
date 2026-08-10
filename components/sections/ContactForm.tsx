@@ -55,7 +55,7 @@ export default function ContactForm() {
     if (!endpoint) {
       setState({
         status: "error",
-        message: `Form is not connected yet. Email us directly at ${brand.email}.`,
+        message: `Formspree is not connected on this deploy. Email ${brand.email} or add NEXT_PUBLIC_FORMSPREE_FORM_ID and rebuild.`,
       });
       return;
     }
