@@ -2,7 +2,7 @@
 
 Digital studio site for websites, SEO systems, and strategy with a backbone.
 
-Hosted on **Cloudflare Workers** (`spinestudio.uk`) via OpenNext.
+Hosted on **Cloudflare Workers** (Worker name: `spine`, domain: `spinestudio.uk`) via OpenNext.
 
 ## Local development
 
@@ -39,7 +39,7 @@ Do **not** use plain `npx wrangler deploy` as the only deploy step unless `wrang
 
 ### Domain
 
-1. Cloudflare → Workers → `spinestudio` → **Settings → Domains & Routes**
+1. Cloudflare → Workers → `spine` → **Settings → Domains & Routes**
 2. Add custom domains: `spinestudio.uk` and `www.spinestudio.uk`
 3. DNS for the zone should already be on Cloudflare (you bought it there)
 

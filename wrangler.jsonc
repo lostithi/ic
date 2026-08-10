@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "spinestudio",
+  "name": "spine",
   "compatibility_date": "2026-08-10",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "observability": {
@@ -14,7 +14,7 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "spinestudio"
+      "service": "spine"
     }
   ],
   "images": {
