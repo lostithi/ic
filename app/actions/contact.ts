@@ -6,6 +6,7 @@ import {
   validateContactPayload,
   type ContactFieldErrors,
 } from "@/lib/contact";
+import { brand } from "@/lib/brand";
 import { siteContent } from "@/lib/content";
 
 export type ContactFormState = {
@@ -44,15 +45,13 @@ export async function submitContactForm(
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.CONTACT_TO_EMAIL || siteContent.contact.email;
   const fromEmail =
-    process.env.CONTACT_FROM_EMAIL ||
-    "Illegalithi Creations <onboarding@resend.dev>";
+    process.env.CONTACT_FROM_EMAIL || "Spine <onboarding@resend.dev>";
 
   if (!apiKey) {
     console.error("RESEND_API_KEY is missing");
     return {
       status: "error",
-      message:
-        "The form is not connected yet. Email us directly at hello@illegalithi.com.",
+      message: `The form is not connected yet. Email us directly at ${brand.email}.`,
     };
   }
 
@@ -64,7 +63,7 @@ export async function submitContactForm(
       replyTo: payload.email,
       subject: `New project inquiry from ${payload.name}`,
       text: [
-        "New Illegalithi Creations inquiry",
+        "New Spine inquiry",
         "",
         `Name: ${payload.name}`,
         `Email: ${payload.email}`,
@@ -81,8 +80,7 @@ export async function submitContactForm(
       console.error("Resend error:", error);
       return {
         status: "error",
-        message:
-          "Could not send right now. Email us directly at hello@illegalithi.com.",
+        message: `Could not send right now. Email us directly at ${brand.email}.`,
       };
     }
 
@@ -94,8 +92,7 @@ export async function submitContactForm(
     console.error("Contact form error:", error);
     return {
       status: "error",
-      message:
-        "Could not send right now. Email us directly at hello@illegalithi.com.",
+      message: `Could not send right now. Email us directly at ${brand.email}.`,
     };
   }
 }

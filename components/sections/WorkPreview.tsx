@@ -13,8 +13,7 @@ export default function WorkPreview() {
           <div>
             <p className="kicker-line mb-4">[SELECTED WORK]</p>
             <h2 className="font-display max-w-5xl text-4xl font-bold uppercase italic tracking-[-0.06em] md:text-7xl lg:text-8xl">
-              Work shaped around clarity, structure, and stronger digital
-              signals.
+              Work shaped around structure, clarity, and systems that stand up.
             </h2>
           </div>
           <Link

@@ -1,35 +1,35 @@
 export const brand = {
-  name: "Illegalithi Creations",
-  shortName: "Illegalithi",
-  code: "[IL-01]",
-  url: "https://illegalithi.com",
-  email: "hello@illegalithi.com",
-  tagline: "Web / SEO / Strategy for brands that refuse template mode.",
+  name: "Spine",
+  shortName: "Spine",
+  code: "[SP-01]",
+  url: "https://spine.studio",
+  email: "hello@spine.studio",
+  tagline: "Web, SEO, and strategy with a backbone.",
   description:
-    "Illegalithi Creations builds sharper websites, SEO systems, and digital strategy for ambitious brands.",
+    "Spine builds the digital structure behind ambitious brands: focused websites, search systems, and positioning that stand upright.",
   colors: {
     red: "#ff2a00",
     black: "#050505",
   },
   offer: {
-    headline: "Stop looking like every other template.",
+    headline: "Build the backbone. Then build the brand.",
     support:
-      "We build focused websites, search systems, and brand positioning that make ambitious businesses feel sharper online.",
-    primaryCta: "Start a project",
+      "Pretty sites without structure still collapse. We align message, website, and search into one clear system.",
+    primaryCta: "Start with structure",
     primaryHref: "/#contact",
     secondaryCta: "See selected work",
     secondaryHref: "/work",
   },
   ads: {
     path: "/start",
-    headline: "Your brand deserves a sharper digital system.",
+    headline: "Your brand needs a spine.",
     support:
-      "Web, SEO, and strategy in one build — less template, more signal.",
-    primaryCta: "Book a project brief",
+      "Web, SEO, and strategy built as one structure — so the whole thing stands up.",
+    primaryCta: "Start with structure",
     primaryHref: "#brief",
   },
   socialShare: {
-    title: "Illegalithi Creations",
-    text: "Web / SEO / Strategy for brands that refuse template mode.",
+    title: "Spine",
+    text: "Web, SEO, and strategy with a backbone.",
   },
 } as const;

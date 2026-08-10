@@ -6,13 +6,13 @@ import SiteFrame from "@/components/shell/SiteFrame";
 import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: "Start a project",
+  title: "Start with structure",
   description: brand.ads.support,
   alternates: {
     canonical: "/start",
   },
   openGraph: {
-    title: `${brand.name} — Start a project`,
+    title: `${brand.name} — Start with structure`,
     description: brand.ads.support,
     url: `${brand.url}/start`,
   },
@@ -31,7 +31,7 @@ export default function StartPage() {
 
           <div className="relative z-10 w-full max-w-5xl">
             <p className="kicker-line mb-6">{brand.code} // PAID ENTRY</p>
-            <h1 className="font-display text-5xl font-bold uppercase italic tracking-[-0.07em] md:text-7xl lg:text-8xl">
+            <h1 className="font-display text-6xl font-bold uppercase italic tracking-[-0.07em] md:text-8xl lg:text-9xl">
               {brand.name}
             </h1>
             <p className="mt-6 max-w-2xl font-display text-2xl font-bold uppercase italic tracking-[-0.04em] md:text-4xl">
@@ -66,14 +66,14 @@ export default function StartPage() {
             <div className="md:col-span-5">
               <p className="kicker-line mb-4">[PROJECT BRIEF]</p>
               <h2 className="font-display text-3xl font-bold uppercase italic tracking-[-0.05em] md:text-5xl">
-                Tell us what needs to feel sharper.
+                Tell us what needs a backbone.
               </h2>
               <p className="mt-5 max-w-md font-mono-ui text-sm uppercase leading-[1.65] tracking-[0.05em]">
-                One form. Clear intake. No template questionnaire theatre.
+                One form. Clear intake. We start with structure, not decoration.
               </p>
               <ul className="mt-8 space-y-3 font-mono-ui text-[11px] uppercase tracking-[0.16em]">
-                <li>01 // Website rebuild or launch</li>
-                <li>02 // SEO structure and visibility</li>
+                <li>01 // Website structure or rebuild</li>
+                <li>02 // SEO architecture and visibility</li>
                 <li>03 // Positioning and digital strategy</li>
               </ul>
             </div>

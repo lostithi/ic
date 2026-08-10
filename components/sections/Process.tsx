@@ -3,28 +3,28 @@ import Reveal from "@/components/ui/Reveal";
 const steps = [
   {
     id: "01",
-    title: "Audit",
-    text: "We examine your current brand, site, and search presence to see what is working, what is unclear, and where attention is leaking.",
+    title: "Align",
+    text: "We define the core message, audience, and point of difference — the vertical line everything else should attach to.",
   },
   {
     id: "02",
-    title: "Position",
-    text: "We define the message, the point of difference, and the digital angle that should shape how people understand your brand.",
+    title: "Structure",
+    text: "We map the information architecture, page logic, and search intent so the site has a real backbone before visuals take over.",
   },
   {
     id: "03",
     title: "Build",
-    text: "We turn that strategy into a focused website structure, sharper content, and a clearer user journey.",
+    text: "We turn that structure into a focused website: sharper content, clearer journeys, and systems that feel intentional.",
   },
   {
     id: "04",
-    title: "Optimize",
-    text: "We strengthen SEO, page logic, and search intent so your online presence becomes easier to find and easier to trust.",
+    title: "Strengthen",
+    text: "We reinforce SEO, conversion paths, and technical clarity so the presence stays upright under real traffic.",
   },
   {
     id: "05",
-    title: "Grow",
-    text: "We support the next stage through campaign thinking, content direction, and iterative digital improvements.",
+    title: "Stand",
+    text: "We support the next stage with campaign thinking and iterative improvements — without bending the core structure.",
   },
 ];
 
@@ -38,8 +38,8 @@ export default function Process() {
         <div className="mb-10 max-w-5xl">
           <p className="kicker-line mb-4">[PROCESS]</p>
           <h2 className="font-display text-4xl font-bold uppercase italic tracking-[-0.05em] md:text-6xl lg:text-7xl">
-            Strategy first. Then sharper systems, stronger signals, and better
-            digital timing.
+            Align first. Then structure, build, and strengthen until the system
+            stands on its own.
           </h2>
         </div>
       </Reveal>

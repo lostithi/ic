@@ -8,34 +8,32 @@ export default function About() {
     >
       <div className="grid gap-10 md:grid-cols-12 md:gap-6">
         <div className="md:col-span-3">
-          <p className="kicker-line">[WHY ILLEGALITHI]</p>
+          <p className="kicker-line">[WHY SPINE]</p>
         </div>
 
         <div className="md:col-span-9">
           <Reveal>
             <h2 className="font-display max-w-5xl text-4xl font-bold uppercase italic tracking-[-0.06em] md:text-6xl lg:text-7xl">
-              Built to break boring patterns, not trust.
+              We don’t decorate weak brands. We give them a backbone.
             </h2>
 
             <div className="mt-8 max-w-3xl space-y-6">
               <p className="font-mono-ui text-sm uppercase leading-[1.75] tracking-[0.05em]">
-                Illegalithi Creations started from the idea that too many brands
-                look acceptable, but not memorable. Their websites work, but say
-                nothing. Their search presence exists, but lacks shape. Their
-                marketing runs, but feels disconnected from the brand behind it.
+                Spine started from a simple observation: too many brands look
+                finished on the surface and unfinished underneath. The website
+                exists. The SEO exists. The marketing exists. But nothing holds
+                them in one clear line.
               </p>
 
               <p className="font-mono-ui text-sm uppercase leading-[1.75] tracking-[0.05em]">
-                We bring web, SEO, and strategy together so the digital presence
-                feels like one system instead of three disconnected efforts. The
-                goal is not more noise. The goal is sharper signals, clearer
-                structure, and a brand people actually remember.
+                We treat web, SEO, and strategy as one structure. Message first.
+                Architecture second. Build third. That order keeps the digital
+                presence upright when trends, campaigns, and page count try to
+                bend it.
               </p>
 
               <p className="font-mono-ui text-sm uppercase leading-[1.75] tracking-[0.05em]">
-                The name stays because it carries the attitude: challenge default
-                templates, question safe choices, and build work with more edge,
-                more intent, and more clarity than the expected version.
+                The name is the job: build the spine. Then let the brand stand.
               </p>
             </div>
           </Reveal>

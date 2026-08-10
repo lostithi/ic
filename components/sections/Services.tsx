@@ -6,9 +6,10 @@ const services = [
     title: "WEB.DEV",
     content: (
       <>
-        Fast, focused websites built to signal{" "}
-        <span className="inline-bar">credibility</span>, sharpen experience, and
-        convert attention into <span className="inline-cut">action</span>.
+        Focused websites built as brand{" "}
+        <span className="inline-bar">structure</span> — clear hierarchy,
+        stronger journeys, and pages that convert attention into{" "}
+        <span className="inline-cut">action</span>.
       </>
     ),
   },
@@ -17,9 +18,9 @@ const services = [
     title: "SEO.OPT",
     content: (
       <>
-        Search-ready structures, technical{" "}
-        <span className="inline-box">clarity</span>, and content systems
-        designed to make the right people{" "}
+        Search architecture that supports the same story as the site: technical{" "}
+        <span className="inline-box">clarity</span>, intent-led pages, and
+        systems that help the right people{" "}
         <span className="inline-cut">find you</span>.
       </>
     ),
@@ -29,9 +30,9 @@ const services = [
     title: "STRATEGY",
     content: (
       <>
-        Brand positioning, <span className="inline-bar">messaging</span>, and
-        digital direction that stop ambitious businesses from looking like
-        everyone else.
+        Positioning and messaging that give the whole system a{" "}
+        <span className="inline-bar">backbone</span> — so web and SEO are not
+        guessing what the brand is supposed to be.
       </>
     ),
   },
@@ -48,8 +49,8 @@ export default function Services() {
           <p className="kicker-line mb-4">[SERVICES]</p>
 
           <h2 className="font-display max-w-5xl text-4xl font-bold uppercase italic tracking-[-0.06em] md:text-7xl lg:text-8xl">
-            Built for brands that want more{" "}
-            <span className="inline-box">signal</span> and less{" "}
+            Built for brands that need a{" "}
+            <span className="inline-box">spine</span>, not another{" "}
             <span className="text-stroke-black">template</span>.
           </h2>
         </div>

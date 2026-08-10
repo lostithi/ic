@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Illegalithi Creations";
+export const alt = "Spine";
 export const size = {
   width: 1200,
   height: 630,
@@ -31,38 +31,38 @@ export default function OpenGraphImage() {
             textTransform: "uppercase",
           }}
         >
-          <span>[IL-01]</span>
-          <span>STATUS: OPERATIONAL</span>
+          <span>[SP-01]</span>
+          <span>STATUS: UPRIGHT</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: 108,
+              fontSize: 160,
               fontWeight: 700,
               fontStyle: "italic",
-              letterSpacing: -6,
+              letterSpacing: -8,
               textTransform: "uppercase",
               lineHeight: 0.9,
             }}
           >
-            Illegalithi
+            Spine
           </div>
           <div
             style={{
-              marginTop: 12,
-              fontSize: 108,
+              marginTop: 18,
+              fontSize: 48,
               fontWeight: 700,
               fontStyle: "italic",
-              letterSpacing: -6,
+              letterSpacing: -2,
               textTransform: "uppercase",
               lineHeight: 0.9,
               border: "3px solid #050505",
-              padding: "8px 18px",
+              padding: "10px 18px",
               display: "flex",
             }}
           >
-            Creations
+            Structure
           </div>
         </div>
 
@@ -74,7 +74,7 @@ export default function OpenGraphImage() {
             maxWidth: 900,
           }}
         >
-          Web / SEO / Strategy for brands that refuse template mode.
+          Web, SEO, and strategy with a backbone.
         </div>
       </div>
     ),

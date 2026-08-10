@@ -53,7 +53,7 @@ export const caseStudies: CaseStudy[] = [
       "Stress-tested the system across landing, work, and manifesto-style pages.",
     ],
     outcome:
-      "A reusable anti-template direction that later informed Illegalithi Creations' own site language: radical red, mono signals, and expressive display type.",
+      "A reusable anti-template direction that later informed Spine's own site language: radical red, mono signals, and structure-first storytelling.",
   },
   {
     id: "03",

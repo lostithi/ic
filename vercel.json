@@ -3,8 +3,8 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.illegalithi.com" }],
-      "destination": "https://illegalithi.com/:path*",
+      "has": [{ "type": "host", "value": "www.spine.studio" }],
+      "destination": "https://spine.studio/:path*",
       "permanent": true
     }
   ]

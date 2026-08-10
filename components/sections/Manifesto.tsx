@@ -2,11 +2,11 @@ import Reveal from "@/components/ui/Reveal";
 
 const manifestoLines = [
   "Most brands do not have a visibility problem.",
-  "They have a clarity problem.",
-  "Their website says one thing.",
-  "Their search presence says another.",
-  "Their marketing says whatever was easiest to ship that week.",
-  "We build sharper systems so all three speak the same language.",
+  "They have a structure problem.",
+  "Their website leans one way.",
+  "Their search presence leans another.",
+  "Their marketing bends with every weekly trend.",
+  "We build the spine so all three stand upright.",
 ];
 
 export default function Manifesto() {
@@ -27,19 +27,18 @@ export default function Manifesto() {
                 >
                   {index === 1 ? (
                     <>
-                      They have a <span className="inline-box">clarity</span>{" "}
+                      They have a <span className="inline-box">structure</span>{" "}
                       problem.
                     </>
                   ) : index === 4 ? (
                     <>
-                      Their marketing says whatever was easiest to{" "}
-                      <span className="inline-cut">ship</span> that week.
+                      Their marketing bends with every weekly{" "}
+                      <span className="inline-cut">trend</span>.
                     </>
                   ) : index === 5 ? (
                     <>
-                      We build{" "}
-                      <span className="inline-bar">sharper systems</span> so all
-                      three speak the same language.
+                      We build the <span className="inline-bar">spine</span> so
+                      all three stand upright.
                     </>
                   ) : (
                     line
@@ -49,10 +48,9 @@ export default function Manifesto() {
             </div>
 
             <p className="mt-10 max-w-2xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.06em]">
-              Illegalithi Creations brings web, SEO, and strategy together so
-              ambitious brands stop feeling{" "}
-              <span className="inline-box">fragmented</span>, forgettable, or
-              stuck in <span className="inline-cut">template mode</span>.
+              Spine brings web, SEO, and strategy together so ambitious brands
+              stop looking <span className="inline-box">soft</span>, fragmented,
+              or stuck in <span className="inline-cut">template mode</span>.
             </p>
           </Reveal>
         </div>

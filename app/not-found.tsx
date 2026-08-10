@@ -8,7 +8,7 @@ export default function NotFound() {
         <div className="max-w-3xl">
           <p className="kicker-line mb-4">[404]</p>
           <h1 className="font-display text-5xl font-bold uppercase italic tracking-[-0.06em] md:text-7xl">
-            Signal lost.
+            Structure missing.
           </h1>
           <p className="mt-6 max-w-xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em]">
             That route does not exist. Head back to the main system or browse

@@ -1,10 +1,11 @@
+import { brand } from "@/lib/brand";
+
 export const siteContent = {
   hero: {
-    code: "[IL-01]",
-    titleTop: "ILLEGALITHI",
-    titleBottom: "CREATIONS",
-    description:
-      "Cooking up sharper digital systems for brands that want to feel less template and a lot more themselves.",
+    code: brand.code,
+    titleTop: "SPINE",
+    titleBottom: "STRUCTURE",
+    description: brand.offer.support,
   },
   rail: [
     { label: "SERVICES", href: "/#services" },
@@ -13,25 +14,24 @@ export const siteContent = {
     { label: "CONTACT", href: "/#contact" },
   ],
   status: {
-    line1: "STATUS: OPERATIONAL",
-    line2: "MODE: SHARP",
-    line3: "ENCODING: UTF-8.RADICAL",
+    line1: "STATUS: UPRIGHT",
+    line2: "MODE: STRUCTURE",
+    line3: "SYSTEM: ALIGNED",
   },
   contact: {
     kicker: "[CONTACT]",
-    headline: "Ready to build something less template?",
+    headline: "Ready to start with structure?",
     description:
-      "For brands that want sharper websites, stronger search visibility, and a clearer digital point of view.",
-    email: "hello@illegalithi.com",
-    mailto: "mailto:hello@illegalithi.com",
+      "For brands that want a clearer backbone across website, search, and strategy — not another soft template layer.",
+    email: brand.email,
+    mailto: `mailto:${brand.email}`,
   },
   footer: {
-    brand: "Illegalithi Creations",
+    brand: brand.name,
     year: "2026",
   },
   share: {
-    tagline:
-      "Web / SEO / Strategy for brands that refuse template mode.",
-    url: "https://illegalithi.com",
+    tagline: brand.tagline,
+    url: brand.url,
   },
 };

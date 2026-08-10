@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { brand } from "@/lib/brand";
 import { siteContent } from "@/lib/content";
 
 export default function Hero() {
@@ -90,14 +91,14 @@ export default function Hero() {
               <h1 className="font-display leading-none uppercase italic">
                 <span
                   ref={topLineRef}
-                  className="block will-change-transform text-[4.3rem] font-bold tracking-[-0.08em] transition-transform duration-300 ease-out sm:text-[5.6rem] md:text-[9rem] lg:text-[11rem] xl:text-[13rem]"
+                  className="block will-change-transform text-[5rem] font-bold tracking-[-0.08em] transition-transform duration-300 ease-out sm:text-[7rem] md:text-[11rem] lg:text-[13rem] xl:text-[15rem]"
                 >
                   {siteContent.hero.titleTop}
                 </span>
 
                 <span
                   ref={bottomLineRef}
-                  className="block will-change-transform text-[4.2rem] font-bold tracking-[-0.08em] transition-transform duration-300 ease-out sm:text-[5.5rem] md:text-[8.8rem] lg:text-[10.8rem] xl:text-[12.8rem]"
+                  className="mt-2 block will-change-transform text-[2.4rem] font-bold tracking-[-0.06em] transition-transform duration-300 ease-out sm:text-[3.2rem] md:text-[4.5rem] lg:text-[5.5rem]"
                 >
                   <span className="inline-box">{siteContent.hero.titleBottom}</span>
                 </span>
@@ -108,15 +109,15 @@ export default function Hero() {
           <div className="md:col-span-4 md:flex md:items-center md:justify-center">
             <div className="hidden w-full max-w-[280px] border border-[var(--color-line)] p-5 md:block">
               <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-[var(--color-text)]/70">
-                Signal // Studio
+                Backbone // Studio
               </p>
               <p className="mt-6 font-display text-5xl font-bold uppercase italic tracking-[-0.06em]">
-                IL
+                SP
               </p>
               <p className="mt-8 font-mono-ui text-[11px] uppercase leading-[1.6] tracking-[0.14em]">
                 Web. Seo. Strategy.
                 <br />
-                Built sharp.
+                Built to stand.
               </p>
               <div className="mt-10 h-px w-full bg-[var(--color-text)]/40" />
               <p className="mt-4 font-mono-ui text-[10px] uppercase tracking-[0.2em] text-[var(--color-text)]/65">
@@ -129,27 +130,28 @@ export default function Hero() {
             <p className="max-w-[32rem] font-mono-ui text-[0.95rem] uppercase leading-[1.35] tracking-[0.05em] text-[var(--color-text)] md:text-[1.05rem]">
               <span className="inline-tag">WEB</span>{" "}
               <span className="inline-tag">SEO</span>{" "}
-              <span className="inline-tag">MARKETING</span>
+              <span className="inline-tag">STRATEGY</span>
               <br />
               <br />
-              Cooking up <span className="inline-bar">sharper</span> digital
-              systems for brands that want to feel less{" "}
-              <span className="inline-box">template</span> and a lot more{" "}
-              <span className="inline-cut">themselves</span>.
+              We build the <span className="inline-bar">backbone</span> first —
+              clear message, focused site structure, and search that matches
+              what you actually are. Less{" "}
+              <span className="inline-box">template</span>. More{" "}
+              <span className="inline-cut">structure</span>.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="#contact"
+                href={brand.offer.primaryHref}
                 className="inline-flex border border-black bg-black px-5 py-3 font-mono-ui text-sm uppercase tracking-[0.16em] text-[#ff2a00] transition duration-200 hover:bg-transparent hover:text-black focus:bg-transparent focus:text-black"
               >
-                Start a project
+                {brand.offer.primaryCta}
               </a>
               <a
-                href="/work"
+                href={brand.offer.secondaryHref}
                 className="inline-flex border border-black px-5 py-3 font-mono-ui text-sm uppercase tracking-[0.16em] transition duration-200 hover:bg-black hover:text-[#ff2a00] focus:bg-black focus:text-[#ff2a00]"
               >
-                See work
+                {brand.offer.secondaryCta}
               </a>
             </div>
           </div>

@@ -12,7 +12,7 @@ export default function SiteFooter() {
             {siteContent.footer.brand}
           </a>
           <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.18em] text-black/70">
-            {siteContent.footer.year}// Sharp systems
+            {siteContent.footer.year}// Structure first
           </p>
         </div>
 
