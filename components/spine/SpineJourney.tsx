@@ -13,10 +13,10 @@ const STOPS = [
   { id: "top", label: "C1" },
   { id: "services", label: "C2" },
   { id: "manifesto", label: "T1" },
-  { id: "work", label: "T2" },
-  { id: "process", label: "L1" },
-  { id: "about", label: "L2" },
-  { id: "contact", label: "S1" },
+  { id: "work", label: "FACE" },
+  { id: "process", label: "NECK" },
+  { id: "about", label: "RIBS" },
+  { id: "contact", label: "HALF" },
 ];
 
 export default function SpineJourney({
@@ -82,7 +82,7 @@ export default function SpineJourney({
               src="/spine/path.png"
               alt=""
               fill
-              className="object-cover opacity-25"
+              className="object-cover opacity-20"
               sizes="100vw"
             />
             <Image
@@ -90,9 +90,21 @@ export default function SpineJourney({
               alt=""
               fill
               priority
-              className="object-contain opacity-80"
+              className="object-contain"
               style={{
-                transform: `translateY(${progressUi * -18}%) scale(1.05)`,
+                opacity: progressUi < 0.42 ? 0.85 : Math.max(0, 1 - (progressUi - 0.42) * 4),
+                transform: `translateY(${Math.min(progressUi, 0.42) * -12}%) scale(1.05)`,
+              }}
+              sizes="100vw"
+            />
+            <Image
+              src="/spine/skull.png"
+              alt=""
+              fill
+              className="object-contain object-top"
+              style={{
+                opacity: progressUi < 0.42 ? 0 : Math.min(1, (progressUi - 0.42) * 3.2),
+                transform: `translateY(${(progressUi - 0.42) * -28}%) scale(1.12)`,
               }}
               sizes="100vw"
             />
@@ -100,7 +112,7 @@ export default function SpineJourney({
         ) : (
           <SpineJourneyCanvas progress={progress} />
         )}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,rgba(5,5,5,0.35)_55%,rgba(5,5,5,0.78)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_18%,rgba(5,5,5,0.28)_60%,rgba(5,5,5,0.62)_100%)]" />
         <div className="spine-grain" />
       </div>
 
