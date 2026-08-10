@@ -63,10 +63,27 @@ After the custom domain is live:
 4. Check the share card at [opengraph.xyz](https://www.opengraph.xyz/) with your live URL
 5. Test `/work`, a case study URL, and the contact form
 
-### Share line (for posts / ads later)
+### Share line (posts / organic)
 
 > Illegalithi Creations — Web / SEO / Strategy for brands that refuse template mode.  
 > https://illegalithi.com
+
+### Ads landing page
+
+Use this URL in paid campaigns:
+
+> https://illegalithi.com/start
+
+`/start` is conversion-focused (brief form on-page) and set to `noindex` so it doesn’t compete with the homepage in search.
+
+### Analytics (optional)
+
+Add in Netlify env vars when ready:
+
+| Key | Purpose |
+|---|---|
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 |
+| `NEXT_PUBLIC_META_PIXEL_ID` | Meta / Instagram ads pixel |
 
 ## Scripts
 

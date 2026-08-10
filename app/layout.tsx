@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Oswald } from "next/font/google";
+import Analytics from "@/components/analytics/Analytics";
+import JsonLd from "@/components/seo/JsonLd";
+import { brand } from "@/lib/brand";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -17,41 +20,36 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Illegalithi Creations",
-    template: "%s | Illegalithi Creations",
+    default: brand.name,
+    template: `%s | ${brand.name}`,
   },
-  description:
-    "Web / SEO / Strategy for brands that refuse template mode. Illegalithi Creations builds sharper websites and digital systems.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://illegalithi.com",
-  ),
-  applicationName: "Illegalithi Creations",
+  description: `${brand.tagline} ${brand.description}`,
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || brand.url),
+  applicationName: brand.name,
   keywords: [
     "web design",
     "web development",
     "SEO",
     "digital strategy",
     "brand websites",
-    "Illegalithi Creations",
+    brand.name,
   ],
-  authors: [{ name: "Illegalithi Creations", url: "https://illegalithi.com" }],
+  authors: [{ name: brand.name, url: brand.url }],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Illegalithi Creations",
-    description:
-      "Web / SEO / Strategy for brands that refuse template mode.",
-    url: "https://illegalithi.com",
-    siteName: "Illegalithi Creations",
+    title: brand.name,
+    description: brand.tagline,
+    url: brand.url,
+    siteName: brand.name,
     locale: "en_GB",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Illegalithi Creations",
-    description:
-      "Web / SEO / Strategy for brands that refuse template mode.",
+    title: brand.name,
+    description: brand.tagline,
   },
   robots: {
     index: true,
@@ -66,7 +64,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${oswald.variable} ${ibmPlexMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <JsonLd />
+        <Analytics />
+        {children}
+      </body>
     </html>
   );
 }
