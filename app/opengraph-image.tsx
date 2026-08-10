@@ -17,8 +17,8 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#ff2a00",
-          color: "#050505",
+          background: "#050505",
+          color: "#f4f4f1",
           padding: 64,
         }}
       >
@@ -29,6 +29,7 @@ export default function OpenGraphImage() {
             fontSize: 22,
             letterSpacing: 4,
             textTransform: "uppercase",
+            opacity: 0.7,
           }}
         >
           <span>[SP-01]</span>
@@ -57,7 +58,7 @@ export default function OpenGraphImage() {
               letterSpacing: -2,
               textTransform: "uppercase",
               lineHeight: 0.9,
-              border: "3px solid #050505",
+              border: "3px solid #f4f4f1",
               padding: "10px 18px",
               display: "flex",
             }}
@@ -72,6 +73,7 @@ export default function OpenGraphImage() {
             letterSpacing: 2,
             textTransform: "uppercase",
             maxWidth: 900,
+            opacity: 0.85,
           }}
         >
           Web, SEO, and strategy with a backbone.

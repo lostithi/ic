@@ -22,19 +22,19 @@ export default function WorkPage() {
               <h1 className="font-display max-w-5xl text-4xl font-bold uppercase italic tracking-[-0.06em] md:text-7xl lg:text-8xl">
                 Selected systems built with structure, clarity, and a backbone.
               </h1>
-              <p className="mt-6 max-w-2xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em]">
+              <p className="mt-6 max-w-2xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em] text-white/75">
                 Case notes from web, SEO, and strategy work. Replace these with
                 live client outcomes as projects ship.
               </p>
             </div>
           </Reveal>
 
-          <div className="border-t border-black/70">
+          <div className="border-t border-white/25">
             {caseStudies.map((project) => (
               <Link
                 key={project.slug}
                 href={`/work/${project.slug}`}
-                className="grid gap-4 border-b border-black/70 py-6 transition-colors duration-200 hover:bg-black hover:text-[#ff2a00] md:grid-cols-12 md:gap-6 md:py-8"
+                className="spine-row grid gap-4 border-b border-white/25 py-6 md:grid-cols-12 md:gap-6 md:py-8"
               >
                 <div className="md:col-span-2">
                   <p className="font-mono-ui text-[11px] uppercase tracking-[0.24em]">

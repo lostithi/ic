@@ -11,8 +11,19 @@ const manifestoLines = [
 
 export default function Manifesto() {
   return (
-    <section className="border-t border-black/70 px-5 py-16 md:px-8 md:py-24">
-      <div className="grid gap-10 md:grid-cols-12 md:gap-6">
+    <section className="relative overflow-hidden border-t border-white/25 px-5 py-16 md:px-8 md:py-24">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[38%] opacity-[0.14] md:block"
+        style={{
+          backgroundImage: "url(/spine/sigil.png)",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right center",
+        }}
+      />
+
+      <div className="relative grid gap-10 md:grid-cols-12 md:gap-6">
         <div className="md:col-span-3">
           <p className="kicker-line">[MANIFESTO]</p>
         </div>
@@ -47,7 +58,7 @@ export default function Manifesto() {
               ))}
             </div>
 
-            <p className="mt-10 max-w-2xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.06em]">
+            <p className="mt-10 max-w-2xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.06em] text-white/75">
               Spine brings web, SEO, and strategy together so ambitious brands
               stop looking <span className="inline-box">soft</span>, fragmented,
               or stuck in <span className="inline-cut">template mode</span>.

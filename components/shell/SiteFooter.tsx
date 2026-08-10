@@ -2,7 +2,7 @@ import { siteContent } from "@/lib/content";
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-black/70 px-5 py-8 md:px-8">
+    <footer className="border-t border-white/25 px-5 py-8 md:px-8">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <a
@@ -11,7 +11,7 @@ export default function SiteFooter() {
           >
             {siteContent.footer.brand}
           </a>
-          <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.18em] text-black/70">
+          <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.18em] text-white/60">
             {siteContent.footer.year}// Structure first
           </p>
         </div>

@@ -60,13 +60,13 @@ export default async function WorkCasePage({ params }: WorkCasePageProps) {
               <p className="mt-4 font-mono-ui text-[11px] uppercase tracking-[0.16em]">
                 {study.type}
               </p>
-              <p className="mt-6 max-w-3xl font-mono-ui text-sm uppercase leading-[1.7] tracking-[0.05em]">
+              <p className="mt-6 max-w-3xl font-mono-ui text-sm uppercase leading-[1.7] tracking-[0.05em] text-white/80">
                 {study.summary}
               </p>
             </div>
           </Reveal>
 
-          <div className="grid gap-8 border-t border-black/70 py-8 md:grid-cols-12">
+          <div className="grid gap-8 border-t border-white/25 py-8 md:grid-cols-12">
             <div className="md:col-span-4">
               <p className="font-mono-ui text-[11px] uppercase tracking-[0.2em]">
                 Role
@@ -93,20 +93,20 @@ export default async function WorkCasePage({ params }: WorkCasePageProps) {
             </div>
           </div>
 
-          <section className="border-t border-black/70 py-10">
+          <section className="border-t border-white/25 py-10">
             <p className="kicker-line mb-4">[CHALLENGE]</p>
-            <p className="max-w-3xl font-mono-ui text-sm uppercase leading-[1.75] tracking-[0.05em]">
+            <p className="max-w-3xl font-mono-ui text-sm uppercase leading-[1.75] tracking-[0.05em] text-white/80">
               {study.challenge}
             </p>
           </section>
 
-          <section className="border-t border-black/70 py-10">
+          <section className="border-t border-white/25 py-10">
             <p className="kicker-line mb-6">[APPROACH]</p>
             <ol className="space-y-4">
               {study.approach.map((step, index) => (
                 <li
                   key={step}
-                  className="grid gap-3 border-b border-black/40 pb-4 md:grid-cols-12"
+                  className="grid gap-3 border-b border-white/20 pb-4 md:grid-cols-12"
                 >
                   <p className="font-mono-ui text-[11px] uppercase tracking-[0.2em] md:col-span-2">
                     [{String(index + 1).padStart(2, "0")}]
@@ -119,30 +119,21 @@ export default async function WorkCasePage({ params }: WorkCasePageProps) {
             </ol>
           </section>
 
-          <section className="border-t border-black/70 py-10">
+          <section className="border-t border-white/25 py-10">
             <p className="kicker-line mb-4">[OUTCOME]</p>
             <p className="max-w-3xl font-display text-2xl font-bold uppercase italic tracking-[-0.04em] md:text-4xl">
               {study.outcome}
             </p>
           </section>
 
-          <div className="mt-8 flex flex-wrap gap-3 border-t border-black/70 pt-8">
-            <Link
-              href="/work"
-              className="inline-flex border border-black px-5 py-3 font-mono-ui text-sm uppercase tracking-[0.16em] transition duration-200 hover:bg-black hover:text-[#ff2a00]"
-            >
+          <div className="mt-8 flex flex-wrap gap-3 border-t border-white/25 pt-8">
+            <Link href="/work" className="btn-ghost">
               All work
             </Link>
-            <Link
-              href={`/work/${nextStudy.slug}`}
-              className="inline-flex border border-black bg-black px-5 py-3 font-mono-ui text-sm uppercase tracking-[0.16em] text-[#ff2a00] transition duration-200 hover:bg-transparent hover:text-black"
-            >
+            <Link href={`/work/${nextStudy.slug}`} className="btn-solid">
               Next case
             </Link>
-            <Link
-              href="/#contact"
-              className="inline-flex border border-black px-5 py-3 font-mono-ui text-sm uppercase tracking-[0.16em] transition duration-200 hover:bg-black hover:text-[#ff2a00]"
-            >
+            <Link href="/#contact" className="btn-ghost">
               Start a project
             </Link>
           </div>

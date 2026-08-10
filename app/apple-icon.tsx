@@ -17,11 +17,12 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#ff2a00",
-          color: "#050505",
+          background: "#050505",
+          color: "#f4f4f1",
           fontSize: 64,
           fontWeight: 700,
           letterSpacing: -3,
+          border: "4px solid #f4f4f1",
         }}
       >
         SP

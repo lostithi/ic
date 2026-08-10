@@ -8,8 +8,8 @@ export const brand = {
   description:
     "Spine builds the digital structure behind ambitious brands: focused websites, search systems, and positioning that stand upright.",
   colors: {
-    red: "#ff2a00",
     black: "#050505",
+    white: "#f4f4f1",
   },
   offer: {
     headline: "Build the backbone. Then build the brand.",

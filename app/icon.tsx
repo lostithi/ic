@@ -17,11 +17,12 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#ff2a00",
-          color: "#050505",
-          fontSize: 14,
+          background: "#050505",
+          color: "#f4f4f1",
+          fontSize: 13,
           fontWeight: 700,
           letterSpacing: -1,
+          border: "1px solid #f4f4f1",
         }}
       >
         SP

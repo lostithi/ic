@@ -6,9 +6,6 @@ import {
   submitContactForm,
 } from "@/app/actions/contact";
 
-const fieldClassName =
-  "w-full border border-black bg-transparent px-4 py-3 font-mono-ui text-sm uppercase tracking-[0.08em] text-black outline-none transition duration-200 placeholder:text-black/40 focus:bg-black focus:text-[#ff2a00] focus:placeholder:text-[#ff2a00]/70";
-
 const labelClassName =
   "mb-2 block font-mono-ui text-[11px] uppercase tracking-[0.2em]";
 
@@ -20,14 +17,14 @@ export default function ContactForm() {
 
   if (state.status === "success") {
     return (
-      <div className="border border-black px-5 py-8 md:px-6">
+      <div className="border border-white px-5 py-8 md:px-6">
         <p className="font-mono-ui text-[11px] uppercase tracking-[0.24em]">
           [SENT]
         </p>
         <p className="mt-4 font-display text-3xl font-bold uppercase italic tracking-[-0.05em] md:text-4xl">
           Message locked in.
         </p>
-        <p className="mt-4 max-w-xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em]">
+        <p className="mt-4 max-w-xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em] text-white/75">
           {state.message}
         </p>
       </div>
@@ -47,7 +44,7 @@ export default function ContactForm() {
             type="text"
             required
             autoComplete="name"
-            className={fieldClassName}
+            className="field-spine"
             placeholder="Your name"
           />
           {state.fieldErrors?.name ? (
@@ -67,7 +64,7 @@ export default function ContactForm() {
             type="email"
             required
             autoComplete="email"
-            className={fieldClassName}
+            className="field-spine"
             placeholder="you@brand.com"
           />
           {state.fieldErrors?.email ? (
@@ -88,7 +85,7 @@ export default function ContactForm() {
             name="company"
             type="text"
             autoComplete="organization"
-            className={fieldClassName}
+            className="field-spine"
             placeholder="Brand / studio"
           />
         </div>
@@ -102,7 +99,7 @@ export default function ContactForm() {
             name="projectType"
             required
             defaultValue=""
-            className={`${fieldClassName} appearance-none`}
+            className="field-spine appearance-none"
           >
             <option value="" disabled>
               Select one
@@ -128,7 +125,7 @@ export default function ContactForm() {
           id="budget"
           name="budget"
           defaultValue=""
-          className={`${fieldClassName} appearance-none`}
+          className="field-spine appearance-none"
         >
           <option value="">Prefer not to say</option>
           <option value="Under £2k">Under £2k</option>
@@ -147,8 +144,8 @@ export default function ContactForm() {
           name="message"
           required
           rows={5}
-          className={`${fieldClassName} resize-y normal-case tracking-[0.04em]`}
-          placeholder="What are you building, and what needs to feel sharper?"
+          className="field-spine resize-y normal-case tracking-[0.04em]"
+          placeholder="What needs a backbone?"
         />
         {state.fieldErrors?.message ? (
           <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.14em]">
@@ -174,17 +171,13 @@ export default function ContactForm() {
       {state.status === "error" ? (
         <p
           aria-live="polite"
-          className="border border-black px-4 py-3 font-mono-ui text-sm uppercase tracking-[0.08em]"
+          className="border border-white px-4 py-3 font-mono-ui text-sm uppercase tracking-[0.08em]"
         >
           {state.message}
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="inline-flex border border-black bg-black px-5 py-3 font-mono-ui text-sm uppercase tracking-[0.16em] text-[#ff2a00] transition duration-200 hover:bg-transparent hover:text-black focus:bg-transparent focus:text-black disabled:cursor-wait disabled:opacity-60"
-      >
+      <button type="submit" disabled={pending} className="btn-solid disabled:opacity-60">
         {pending ? "Sending..." : "Send project brief"}
       </button>
     </form>

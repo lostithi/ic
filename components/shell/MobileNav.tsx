@@ -19,7 +19,7 @@ export default function MobileNav() {
 
   return (
     <div className="md:hidden">
-      <div className="fixed inset-x-0 top-0 z-50 border-b border-black/70 bg-[#ff2a00]">
+      <div className="fixed inset-x-0 top-0 z-50 border-b border-white/25 bg-black">
         <div className="flex h-14 items-center justify-between px-5">
           <a
             href="/"
@@ -35,7 +35,7 @@ export default function MobileNav() {
             aria-controls="mobile-nav-panel"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((value) => !value)}
-            className="border border-black px-3 py-2 font-mono-ui text-[11px] uppercase tracking-[0.18em] transition-colors duration-200 hover:bg-black hover:text-[#ff2a00]"
+            className="border border-white px-3 py-2 font-mono-ui text-[11px] uppercase tracking-[0.18em] transition-colors duration-200 hover:bg-white hover:text-black"
           >
             {open ? "Close" : "Menu"}
           </button>
@@ -45,15 +45,15 @@ export default function MobileNav() {
       {open ? (
         <nav
           id="mobile-nav-panel"
-          className="fixed inset-0 z-40 bg-[#ff2a00] pt-14"
+          className="fixed inset-0 z-40 bg-black pt-14"
         >
-          <ul className="flex h-full flex-col border-t border-black/70">
+          <ul className="flex h-full flex-col border-t border-white/25">
             {siteContent.rail.map((item) => (
-              <li key={item.label} className="flex-1 border-b border-black/70">
+              <li key={item.label} className="flex-1 border-b border-white/25">
                 <a
                   href={item.href}
                   onClick={close}
-                  className="flex h-full items-center px-5 font-mono-ui text-sm uppercase tracking-[0.24em] transition-colors duration-200 hover:bg-black hover:text-[#ff2a00]"
+                  className="flex h-full items-center px-5 font-mono-ui text-sm uppercase tracking-[0.24em] transition-colors duration-200 hover:bg-white hover:text-black"
                 >
                   {item.label}
                 </a>

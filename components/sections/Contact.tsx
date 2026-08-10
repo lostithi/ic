@@ -6,7 +6,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="border-t border-black/70 px-5 py-16 md:px-8 md:py-24"
+      className="border-t border-white/25 px-5 py-16 md:px-8 md:py-24"
     >
       <Reveal>
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
@@ -16,21 +16,15 @@ export default function Contact() {
               {siteContent.contact.headline}
             </h2>
 
-            <p className="mt-6 max-w-xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em]">
+            <p className="mt-6 max-w-xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em] text-white/75">
               {siteContent.contact.description}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={siteContent.contact.mailto}
-                className="inline-flex border border-black px-5 py-3 font-mono-ui text-sm uppercase tracking-[0.16em] transition duration-200 hover:bg-black hover:text-[#ff2a00] focus:bg-black focus:text-[#ff2a00]"
-              >
+              <a href={siteContent.contact.mailto} className="btn-ghost">
                 {siteContent.contact.email}
               </a>
-              <a
-                href="/work"
-                className="inline-flex border border-black px-5 py-3 font-mono-ui text-sm uppercase tracking-[0.16em] transition duration-200 hover:bg-black hover:text-[#ff2a00] focus:bg-black focus:text-[#ff2a00]"
-              >
+              <a href="/work" className="btn-ghost">
                 See work
               </a>
             </div>

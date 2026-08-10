@@ -6,7 +6,7 @@ export default function WorkPreview() {
   return (
     <section
       id="work"
-      className="border-t border-black/70 px-5 py-16 md:px-8 md:py-24"
+      className="border-t border-white/25 px-5 py-16 md:px-8 md:py-24"
     >
       <Reveal>
         <div className="mb-10 flex max-w-6xl flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -16,40 +16,34 @@ export default function WorkPreview() {
               Work shaped around structure, clarity, and systems that stand up.
             </h2>
           </div>
-          <Link
-            href="/work"
-            className="inline-flex shrink-0 border border-black px-5 py-3 font-mono-ui text-sm uppercase tracking-[0.16em] transition duration-200 hover:bg-black hover:text-[#ff2a00]"
-          >
+          <Link href="/work" className="btn-ghost shrink-0">
             View all work
           </Link>
         </div>
       </Reveal>
 
-      <div className="border-t border-black/70">
+      <div className="border-t border-white/25">
         {caseStudies.map((project) => (
           <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="grid gap-4 border-b border-black/70 py-6 transition-colors duration-200 hover:bg-black hover:text-[#ff2a00] md:grid-cols-12 md:gap-6 md:py-8"
+            className="spine-row grid gap-4 border-b border-white/25 py-6 md:grid-cols-12 md:gap-6 md:py-8"
           >
             <div className="md:col-span-2">
               <p className="font-mono-ui text-[11px] uppercase tracking-[0.24em]">
                 [{project.id}]
               </p>
             </div>
-
             <div className="md:col-span-4">
               <h3 className="font-display text-3xl font-bold uppercase italic tracking-[-0.06em] md:text-5xl">
                 {project.title}
               </h3>
             </div>
-
             <div className="md:col-span-2">
               <p className="font-mono-ui text-[11px] uppercase leading-[1.5] tracking-[0.08em]">
                 {project.type}
               </p>
             </div>
-
             <div className="md:col-span-4">
               <p className="max-w-xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em]">
                 {project.summary}
