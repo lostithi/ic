@@ -1,3 +1,4 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { Resend } from "resend";
 import {
   payloadFromFormData,
@@ -12,6 +13,48 @@ export type ContactResult = {
   message: string;
   fieldErrors?: ContactFieldErrors;
 };
+
+function readEnv(key: string): string | undefined {
+  const fromProcess = process.env[key];
+  if (typeof fromProcess === "string" && fromProcess.length > 0) {
+    return fromProcess;
+  }
+
+  try {
+    const env = getCloudflareContext().env as Record<string, unknown>;
+    const value = env[key];
+    return typeof value === "string" && value.length > 0 ? value : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function resendFailureMessage(error: unknown): string {
+  const raw =
+    typeof error === "object" &&
+    error &&
+    "message" in error &&
+    typeof (error as { message: unknown }).message === "string"
+      ? (error as { message: string }).message
+      : "";
+
+  const lower = raw.toLowerCase();
+
+  if (
+    lower.includes("domain is not verified") ||
+    lower.includes("not verified") ||
+    lower.includes("invalid from") ||
+    lower.includes("from address")
+  ) {
+    return "Sender email is not verified in Resend yet. Set CONTACT_FROM_EMAIL to Spine Studio <onboarding@resend.dev> until spinestudio.uk is verified.";
+  }
+
+  if (lower.includes("api key") || lower.includes("unauthorized")) {
+    return "Resend API key is invalid. Check RESEND_API_KEY on the Worker.";
+  }
+
+  return `Could not send right now. Email us directly at ${brand.email}.`;
+}
 
 export async function processContactForm(
   formData: FormData,
@@ -34,10 +77,11 @@ export async function processContactForm(
     };
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.CONTACT_TO_EMAIL || siteContent.contact.email;
+  const apiKey = readEnv("RESEND_API_KEY");
+  const toEmail = readEnv("CONTACT_TO_EMAIL") || siteContent.contact.email;
+  // Resend only allows custom from-addresses after domain verification.
   const fromEmail =
-    process.env.CONTACT_FROM_EMAIL ||
+    readEnv("CONTACT_FROM_EMAIL") ||
     "Spine Studio <onboarding@resend.dev>";
 
   if (!apiKey) {
@@ -73,7 +117,7 @@ export async function processContactForm(
       console.error("Resend error:", error);
       return {
         status: "error",
-        message: `Could not send right now. Email us directly at ${brand.email}.`,
+        message: resendFailureMessage(error),
       };
     }
 
@@ -85,7 +129,7 @@ export async function processContactForm(
     console.error("Contact form error:", error);
     return {
       status: "error",
-      message: `Could not send right now. Email us directly at ${brand.email}.`,
+      message: resendFailureMessage(error),
     };
   }
 }

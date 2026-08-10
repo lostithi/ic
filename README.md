@@ -32,7 +32,7 @@ Git is connected to Cloudflare Workers Builds. Required settings:
 | Setting | Value |
 |---|---|
 | Build command | `npx opennextjs-cloudflare build` |
-| Deploy command | `npx opennextjs-cloudflare deploy` |
+| Deploy command | `npx opennextjs-cloudflare deploy -- --keep-vars` |
 | Root directory | `/` (repo root) |
 
 Do **not** use plain `npx wrangler deploy` as the only deploy step unless `wrangler.jsonc` is already in the repo (it is now). Prefer `opennextjs-cloudflare deploy`.
@@ -50,9 +50,11 @@ Workers → Settings → Variables and Secrets (also set the same in Workers Bui
 | Key | Required | Notes |
 |---|---|---|
 | `RESEND_API_KEY` | Yes (for form) | From [resend.com](https://resend.com/api-keys) |
-| `CONTACT_TO_EMAIL` | Recommended | Default `hello@spinestudio.uk` |
-| `CONTACT_FROM_EMAIL` | Recommended | Verified sender in Resend |
+| `CONTACT_TO_EMAIL` | Recommended | Your real inbox. With `onboarding@resend.dev`, Resend only delivers to the Resend account email. |
+| `CONTACT_FROM_EMAIL` | Recommended | Start with `Spine Studio <onboarding@resend.dev>`. Custom `@spinestudio.uk` only after Resend domain verify. |
 | `NEXT_PUBLIC_SITE_URL` | Recommended | `https://spinestudio.uk` |
+
+Set these on the **Worker runtime** (`spine` → Settings → Variables and Secrets), not only in Workers Builds. Deploy uses `--keep-vars` so dashboard secrets are not wiped.
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional | GA4 |
 | `NEXT_PUBLIC_META_PIXEL_ID` | Optional | Meta / Instagram ads |
 
