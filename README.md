@@ -11,35 +11,62 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Contact form (Resend)
+## Deploy on Netlify
 
-1. Create an API key at [resend.com](https://resend.com/api-keys)
-2. Copy `.env.example` to `.env.local`
-3. Fill in:
+This repo is set up for Netlify hosting (`netlify.toml`).
 
-```bash
-RESEND_API_KEY=re_xxxxxxxx
-CONTACT_TO_EMAIL=hello@illegalithi.com
-CONTACT_FROM_EMAIL=Illegalithi Creations <onboarding@resend.dev>
-```
+### 1. Create the site
 
-For production, verify your domain in Resend and switch `CONTACT_FROM_EMAIL` to a sender on `illegalithi.com`.
+1. Push the repo to GitHub (already done if you’re on `main`)
+2. In Netlify: **Add new site → Import an existing project**
+3. Select the repo
+4. Confirm build settings (should auto-detect Next.js):
+   - **Build command:** `npm run build`
+   - **Publish directory:** `.next`
+   - **Node version:** `20` (set in `netlify.toml`)
 
-## Deploy on Vercel
+### 2. Attach your domain
 
-1. Push this repo to GitHub
-2. Import the project in [Vercel](https://vercel.com/new)
-3. Add the same env vars from `.env.example`
-4. Deploy
-5. Attach custom domain `illegalithi.com` in Vercel → Project → Settings → Domains
+1. Netlify → **Domain management** → **Add domain**
+2. Add `illegalithi.com` and follow DNS instructions
+3. `www.illegalithi.com` redirects to apex via `netlify.toml`
 
-After DNS is live, confirm:
+### 3. Contact form (works without Resend)
 
-- `/` homepage
-- `/work` and case study routes
-- `/robots.txt` and `/sitemap.xml`
-- Contact form delivery to your inbox
-- Social preview via [opengraph.xyz](https://www.opengraph.xyz/)
+Netlify Forms is the default path:
+
+1. Deploy once so Netlify detects the `contact` form
+2. Netlify → **Forms** → confirm `contact` appears
+3. **Form notifications** → send submissions to `hello@illegalithi.com`
+4. Submit a test inquiry from the live site
+
+Optional upgrade: add Resend env vars if you want branded transactional email instead of / as well as Netlify Forms.
+
+### 4. Environment variables (optional Resend)
+
+Netlify → **Site configuration → Environment variables**:
+
+| Key | Required | Notes |
+|---|---|---|
+| `RESEND_API_KEY` | No | If set, form tries Resend first |
+| `CONTACT_TO_EMAIL` | Only with Resend | Default `hello@illegalithi.com` |
+| `CONTACT_FROM_EMAIL` | Only with Resend | Must be verified in Resend |
+| `NEXT_PUBLIC_SITE_URL` | Recommended | `https://illegalithi.com` |
+
+### 5. Post-deploy SEO checklist
+
+After the custom domain is live:
+
+1. Open `https://illegalithi.com/robots.txt`
+2. Open `https://illegalithi.com/sitemap.xml`
+3. Submit the sitemap in [Google Search Console](https://search.google.com/search-console)
+4. Check the share card at [opengraph.xyz](https://www.opengraph.xyz/) with your live URL
+5. Test `/work`, a case study URL, and the contact form
+
+### Share line (for posts / ads later)
+
+> Illegalithi Creations — Web / SEO / Strategy for brands that refuse template mode.  
+> https://illegalithi.com
 
 ## Scripts
 

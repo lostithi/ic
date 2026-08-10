@@ -71,10 +71,10 @@ export default function OpenGraphImage() {
             fontSize: 28,
             letterSpacing: 2,
             textTransform: "uppercase",
-            maxWidth: 820,
+            maxWidth: 900,
           }}
         >
-          Sharper websites. SEO systems. Digital strategy.
+          Web / SEO / Strategy for brands that refuse template mode.
         </div>
       </div>
     ),

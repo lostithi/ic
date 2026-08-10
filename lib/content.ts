@@ -29,4 +29,9 @@ export const siteContent = {
     brand: "Illegalithi Creations",
     year: "2026",
   },
+  share: {
+    tagline:
+      "Web / SEO / Strategy for brands that refuse template mode.",
+    url: "https://illegalithi.com",
+  },
 };

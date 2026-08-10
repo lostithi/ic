@@ -21,8 +21,10 @@ export const metadata: Metadata = {
     template: "%s | Illegalithi Creations",
   },
   description:
-    "Illegalithi Creations is a digital studio building sharper websites, SEO systems, and marketing for ambitious brands.",
-  metadataBase: new URL("https://illegalithi.com"),
+    "Web / SEO / Strategy for brands that refuse template mode. Illegalithi Creations builds sharper websites and digital systems.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://illegalithi.com",
+  ),
   applicationName: "Illegalithi Creations",
   keywords: [
     "web design",
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Illegalithi Creations",
     description:
-      "A digital studio building sharper websites, SEO systems, and marketing for ambitious brands.",
+      "Web / SEO / Strategy for brands that refuse template mode.",
     url: "https://illegalithi.com",
     siteName: "Illegalithi Creations",
     locale: "en_GB",
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Illegalithi Creations",
     description:
-      "A digital studio building sharper websites, SEO systems, and marketing for ambitious brands.",
+      "Web / SEO / Strategy for brands that refuse template mode.",
   },
   robots: {
     index: true,

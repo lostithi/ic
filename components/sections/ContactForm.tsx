@@ -1,10 +1,12 @@
 "use client";
 
-import { useActionState } from "react";
+import { useState, useTransition } from "react";
+import { submitContactForm } from "@/app/actions/contact";
 import {
-  contactInitialState,
-  submitContactForm,
-} from "@/app/actions/contact";
+  payloadFromFormData,
+  validateContactPayload,
+  type ContactFieldErrors,
+} from "@/lib/contact";
 
 const fieldClassName =
   "w-full border border-black bg-transparent px-4 py-3 font-mono-ui text-sm uppercase tracking-[0.08em] text-black outline-none transition duration-200 placeholder:text-black/40 focus:bg-black focus:text-[#ff2a00] focus:placeholder:text-[#ff2a00]/70";
@@ -12,13 +14,35 @@ const fieldClassName =
 const labelClassName =
   "mb-2 block font-mono-ui text-[11px] uppercase tracking-[0.2em]";
 
-export default function ContactForm() {
-  const [state, formAction, pending] = useActionState(
-    submitContactForm,
-    contactInitialState,
-  );
+async function submitToNetlifyForms(form: HTMLFormElement) {
+  const formData = new FormData(form);
+  const body = new URLSearchParams();
 
-  if (state.status === "success") {
+  body.set("form-name", "contact");
+  for (const [key, value] of formData.entries()) {
+    if (typeof value === "string") {
+      body.append(key, value);
+    }
+  }
+
+  const response = await fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: body.toString(),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Netlify Forms failed with ${response.status}`);
+  }
+}
+
+export default function ContactForm() {
+  const [pending, startTransition] = useTransition();
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
+
+  if (status === "success") {
     return (
       <div className="border border-black px-5 py-8 md:px-6">
         <p className="font-mono-ui text-[11px] uppercase tracking-[0.24em]">
@@ -28,14 +52,73 @@ export default function ContactForm() {
           Message locked in.
         </p>
         <p className="mt-4 max-w-xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em]">
-          {state.message}
+          {message || "Message received. We'll get back to you shortly."}
         </p>
       </div>
     );
   }
 
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = payloadFromFormData(formData);
+    const errors = validateContactPayload(payload);
+
+    if (Object.keys(errors).length > 0) {
+      setStatus("error");
+      setFieldErrors(errors);
+      setMessage("Check the highlighted fields and try again.");
+      return;
+    }
+
+    setFieldErrors({});
+    setMessage("");
+
+    startTransition(async () => {
+      try {
+        const result = await submitContactForm(
+          { status: "idle", message: "" },
+          formData,
+        );
+
+        if (result.status === "success") {
+          setStatus("success");
+          setMessage(result.message);
+          return;
+        }
+
+        if (result.status === "error") {
+          setStatus("error");
+          setFieldErrors(result.fieldErrors || {});
+          setMessage(result.message);
+          return;
+        }
+
+        // fallback or unexpected: Netlify Forms path
+        await submitToNetlifyForms(form);
+        setStatus("success");
+        setMessage("Message received. We'll get back to you shortly.");
+      } catch (error) {
+        console.error(error);
+        setStatus("error");
+        setMessage(
+          "Could not send right now. Email us directly at hello@illegalithi.com.",
+        );
+      }
+    });
+  }
+
   return (
-    <form action={formAction} className="space-y-5" noValidate>
+    <form
+      name="contact"
+      method="POST"
+      onSubmit={handleSubmit}
+      className="space-y-5"
+      noValidate
+    >
+      <input type="hidden" name="form-name" value="contact" />
+
       <div className="grid gap-5 md:grid-cols-2">
         <div>
           <label htmlFor="name" className={labelClassName}>
@@ -50,9 +133,9 @@ export default function ContactForm() {
             className={fieldClassName}
             placeholder="Your name"
           />
-          {state.fieldErrors?.name ? (
+          {fieldErrors.name ? (
             <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.14em]">
-              {state.fieldErrors.name}
+              {fieldErrors.name}
             </p>
           ) : null}
         </div>
@@ -70,9 +153,9 @@ export default function ContactForm() {
             className={fieldClassName}
             placeholder="you@brand.com"
           />
-          {state.fieldErrors?.email ? (
+          {fieldErrors.email ? (
             <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.14em]">
-              {state.fieldErrors.email}
+              {fieldErrors.email}
             </p>
           ) : null}
         </div>
@@ -112,9 +195,9 @@ export default function ContactForm() {
             <option value="Strategy">Strategy</option>
             <option value="Full system">Full system</option>
           </select>
-          {state.fieldErrors?.projectType ? (
+          {fieldErrors.projectType ? (
             <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.14em]">
-              {state.fieldErrors.projectType}
+              {fieldErrors.projectType}
             </p>
           ) : null}
         </div>
@@ -150,30 +233,27 @@ export default function ContactForm() {
           className={`${fieldClassName} resize-y normal-case tracking-[0.04em]`}
           placeholder="What are you building, and what needs to feel sharper?"
         />
-        {state.fieldErrors?.message ? (
+        {fieldErrors.message ? (
           <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.14em]">
-            {state.fieldErrors.message}
+            {fieldErrors.message}
           </p>
         ) : null}
       </div>
 
-      <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
-        <label htmlFor="company_website">Company website</label>
-        <input
-          id="company_website"
-          name="company_website"
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-        />
+      <div
+        className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <label htmlFor="bot-field">Don’t fill this out</label>
+        <input id="bot-field" name="bot-field" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      {state.status === "error" ? (
+      {status === "error" ? (
         <p
           aria-live="polite"
           className="border border-black px-4 py-3 font-mono-ui text-sm uppercase tracking-[0.08em]"
         >
-          {state.message}
+          {message}
         </p>
       ) : null}
 
