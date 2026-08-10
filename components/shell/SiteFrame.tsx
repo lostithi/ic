@@ -8,7 +8,7 @@ export default function SiteFrame({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-black text-[var(--spine-white)]">
+    <div className="min-h-screen bg-transparent text-[var(--spine-white)]">
       <MobileNav />
       <LeftRail />
 
@@ -16,11 +16,6 @@ export default function SiteFrame({
         <div className="hidden md:block">
           <TopStatus />
         </div>
-
-        <div className="pointer-events-none absolute inset-0 opacity-[0.06]">
-          <div className="h-full w-full bg-[linear-gradient(to_bottom,transparent_0%,transparent_calc(100%-1px),rgba(244,244,241,0.35)_100%)] bg-[length:100%_5px]" />
-        </div>
-
         <div className="relative z-10">{children}</div>
       </div>
     </div>

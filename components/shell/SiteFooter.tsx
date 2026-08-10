@@ -2,7 +2,7 @@ import { siteContent } from "@/lib/content";
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-white/25 px-5 py-8 md:px-8">
+    <footer className="relative z-10 border-t border-white/15 bg-black/50 px-5 py-8 backdrop-blur-sm md:px-8">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <a

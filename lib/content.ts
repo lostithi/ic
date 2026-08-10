@@ -9,14 +9,14 @@ export const siteContent = {
   },
   rail: [
     { label: "SERVICES", href: "/#services" },
-    { label: "WORK", href: "/work" },
+    { label: "WORK", href: "/#work" },
     { label: "PROCESS", href: "/#process" },
     { label: "CONTACT", href: "/#contact" },
   ],
   status: {
-    line1: "STATUS: UPRIGHT",
-    line2: "MODE: STRUCTURE",
-    line3: "SYSTEM: ALIGNED",
+    line1: "STATUS: DESCENDING",
+    line2: "MODE: THROUGH-SPINE",
+    line3: "PATH: TOP → BASE",
   },
   contact: {
     kicker: "[CONTACT]",

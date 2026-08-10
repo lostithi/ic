@@ -7,20 +7,23 @@ import Services from "@/components/sections/Services";
 import WorkPreview from "@/components/sections/WorkPreview";
 import SiteFooter from "@/components/shell/SiteFooter";
 import SiteFrame from "@/components/shell/SiteFrame";
+import SpineJourney from "@/components/spine/SpineJourney";
 
 export default function HomePage() {
   return (
     <SiteFrame>
-      <main>
-        <Hero />
-        <Services />
-        <Manifesto />
-        <WorkPreview />
-        <Process />
-        <About />
-        <Contact />
-      </main>
-      <SiteFooter />
+      <SpineJourney>
+        <main>
+          <Hero />
+          <Services />
+          <Manifesto />
+          <WorkPreview />
+          <Process />
+          <About />
+          <Contact />
+        </main>
+        <SiteFooter />
+      </SpineJourney>
     </SiteFrame>
   );
 }
