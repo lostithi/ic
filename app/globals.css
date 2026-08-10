@@ -3,6 +3,17 @@
 :root {
   --ic-red: #ff2a00;
   --ic-black: #050505;
+  --color-bg: var(--ic-red);
+  --color-text: var(--ic-black);
+  --color-line: rgba(5, 5, 5, 0.7);
+}
+
+@theme inline {
+  --font-display: var(--font-oswald), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --font-mono-ui: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --color-ic-red: var(--ic-red);
+  --color-ic-black: var(--ic-black);
 }
 
 html {
@@ -10,9 +21,9 @@ html {
 }
 
 body {
-  background: var(--ic-red);
-  color: var(--ic-black);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono-ui);
 }
 
 * {
@@ -33,10 +44,6 @@ a {
   writing-mode: vertical-rl;
 }
 
-/* Style-across */
-
-
-
 .text-stroke-black {
   -webkit-text-stroke: 1px var(--ic-black);
   color: transparent;
@@ -48,7 +55,6 @@ a {
   padding: 0.04em 0.18em 0.02em;
   line-height: 0.95;
 }
-
 
 .inline-box-thin-tight {
   display: inline-block;
@@ -129,6 +135,27 @@ a {
   background: var(--ic-black);
 }
 
-/* Style-across */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
 
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

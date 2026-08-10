@@ -1,3 +1,5 @@
+import Reveal from "@/components/ui/Reveal";
+
 const services = [
   {
     id: "01",
@@ -5,8 +7,8 @@ const services = [
     content: (
       <>
         Fast, focused websites built to signal{" "}
-        <span className="inline-bar">credibility</span>, sharpen experience,
-        and convert attention into <span className="inline-cut">action</span>.
+        <span className="inline-bar">credibility</span>, sharpen experience, and
+        convert attention into <span className="inline-cut">action</span>.
       </>
     ),
   },
@@ -17,7 +19,8 @@ const services = [
       <>
         Search-ready structures, technical{" "}
         <span className="inline-box">clarity</span>, and content systems
-        designed to make the right people <span className="inline-cut">find you</span>.
+        designed to make the right people{" "}
+        <span className="inline-cut">find you</span>.
       </>
     ),
   },
@@ -40,14 +43,17 @@ export default function Services() {
       id="services"
       className="border-t border-black/70 px-5 py-16 md:px-8 md:py-24"
     >
-      <div className="mb-10 max-w-6xl">
-        <p className="kicker-line mb-4">[SERVICES]</p>
+      <Reveal>
+        <div className="mb-10 max-w-6xl">
+          <p className="kicker-line mb-4">[SERVICES]</p>
 
-        <h2 className="font-display max-w-5xl text-4xl font-bold uppercase italic tracking-[-0.06em] md:text-7xl lg:text-8xl">
-          Built for brands that want more <span className="inline-box">signal</span>{" "}
-          and less <span className="text-stroke-black">template</span>.
-        </h2>
-      </div>
+          <h2 className="font-display max-w-5xl text-4xl font-bold uppercase italic tracking-[-0.06em] md:text-7xl lg:text-8xl">
+            Built for brands that want more{" "}
+            <span className="inline-box">signal</span> and less{" "}
+            <span className="text-stroke-black">template</span>.
+          </h2>
+        </div>
+      </Reveal>
 
       <div className="border-t border-black/70">
         {services.map((service) => (

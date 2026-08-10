@@ -4,17 +4,29 @@ export const siteContent = {
     titleTop: "ILLEGALITHI",
     titleBottom: "CREATIONS",
     description:
-      "Cooking up sharper web, SEO, and marketing. We build fast, focused websites and campaigns that make ambitious brands feel a little less template and a lot more them.",
+      "Cooking up sharper digital systems for brands that want to feel less template and a lot more themselves.",
   },
   rail: [
-    { label: "WEB.DEV", href: "#services" },
-    { label: "SEO.OPT", href: "#services" },
-    { label: "STRATEGY", href: "#process" },
-    { label: "CONTACT", href: "#contact" },
+    { label: "SERVICES", href: "/#services" },
+    { label: "WORK", href: "/work" },
+    { label: "PROCESS", href: "/#process" },
+    { label: "CONTACT", href: "/#contact" },
   ],
   status: {
     line1: "STATUS: OPERATIONAL",
     line2: "MODE: SHARP",
     line3: "ENCODING: UTF-8.RADICAL",
+  },
+  contact: {
+    kicker: "[CONTACT]",
+    headline: "Ready to build something less template?",
+    description:
+      "For brands that want sharper websites, stronger search visibility, and a clearer digital point of view.",
+    email: "hello@illegalithi.com",
+    mailto: "mailto:hello@illegalithi.com",
+  },
+  footer: {
+    brand: "Illegalithi Creations",
+    year: "2026",
   },
 };

@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
+import { IBM_Plex_Mono, Oswald } from "next/font/google";
 import "./globals.css";
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-oswald",
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-ibm-plex-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -9,12 +23,26 @@ export const metadata: Metadata = {
   description:
     "Illegalithi Creations is a digital studio building sharper websites, SEO systems, and marketing for ambitious brands.",
   metadataBase: new URL("https://illegalithi.com"),
+  applicationName: "Illegalithi Creations",
+  keywords: [
+    "web design",
+    "web development",
+    "SEO",
+    "digital strategy",
+    "brand websites",
+    "Illegalithi Creations",
+  ],
+  authors: [{ name: "Illegalithi Creations", url: "https://illegalithi.com" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Illegalithi Creations",
     description:
       "A digital studio building sharper websites, SEO systems, and marketing for ambitious brands.",
     url: "https://illegalithi.com",
     siteName: "Illegalithi Creations",
+    locale: "en_GB",
     type: "website",
   },
   twitter: {
@@ -22,6 +50,10 @@ export const metadata: Metadata = {
     title: "Illegalithi Creations",
     description:
       "A digital studio building sharper websites, SEO systems, and marketing for ambitious brands.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -31,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${oswald.variable} ${ibmPlexMono.variable}`}>
       <body>{children}</body>
     </html>
   );
