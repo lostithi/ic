@@ -7,16 +7,10 @@ export const siteContent = {
     titleBottom: "STRUCTURE",
     description: brand.offer.support,
   },
-  rail: [
-    { label: "SERVICES", href: "/#services" },
-    { label: "WORK", href: "/#work" },
-    { label: "PROCESS", href: "/#process" },
-    { label: "CONTACT", href: "/#contact" },
-  ],
   status: {
     line1: "STATUS: DESCENDING",
     line2: "MODE: THROUGH-SPINE",
-    line3: "PATH: TOP → BASE",
+    line3: "PATH: HEAD → END",
   },
   contact: {
     kicker: "[CONTACT]",

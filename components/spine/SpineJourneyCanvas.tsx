@@ -3,12 +3,11 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
-import { SkullTorso, UpperSpine } from "@/components/spine/SpineModels";
+import InkPass from "@/components/spine/InkPass";
+import { AnatomyColumn } from "@/components/spine/SpineModels";
 
 type ProgressRef = React.MutableRefObject<number>;
 type PointerRef = React.MutableRefObject<{ x: number; y: number }>;
-
-const PHASE_SPLIT = 0.42;
 
 function smoothstep(edge0: number, edge1: number, x: number) {
   const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
@@ -30,6 +29,11 @@ function usePointer() {
   return pointer;
 }
 
+/**
+ * Head-first descent:
+ * 0.00–0.28  face the skull / orbit
+ * 0.28–1.00  travel down cervical → thoracic → lumbar → end
+ */
 function JourneyScene({
   progress,
   pointer,
@@ -37,101 +41,74 @@ function JourneyScene({
   progress: ProgressRef;
   pointer: PointerRef;
 }) {
-  const upperGroup = useRef<THREE.Group>(null);
-  const skullGroup = useRef<THREE.Group>(null);
+  const column = useRef<THREE.Group>(null);
 
   useFrame(({ camera }) => {
     const p = progress.current;
-    const upperFade = 1 - smoothstep(PHASE_SPLIT - 0.03, PHASE_SPLIT + 0.1, p);
-    const lowerFade = smoothstep(PHASE_SPLIT - 0.03, PHASE_SPLIT + 0.12, p);
-    const lowerLocal = smoothstep(PHASE_SPLIT, 1, p);
+    const headPhase = smoothstep(0, 0.28, p);
+    const spineLocal = smoothstep(0.22, 1, p);
 
-    if (upperGroup.current) {
-      upperGroup.current.visible = upperFade > 0.02;
-      upperGroup.current.traverse((obj) => {
-        const mesh = obj as THREE.Mesh;
-        if (!mesh.isMesh) return;
-        const mat = mesh.material as THREE.MeshStandardMaterial | THREE.MeshBasicMaterial;
-        if ("opacity" in mat) {
-          if (mat.userData.baseOpacity == null) {
-            mat.userData.baseOpacity = mat.opacity ?? 1;
-            mat.transparent = true;
-          }
-          mat.opacity = mat.userData.baseOpacity * upperFade;
-        }
-      });
-      upperGroup.current.rotation.y =
-        smoothstep(0, PHASE_SPLIT, p) * Math.PI * 0.9 +
-        pointer.current.x * 0.2;
-      upperGroup.current.rotation.x =
-        -0.08 + p * 0.1 - pointer.current.y * 0.04;
+    if (column.current) {
+      // Early: rotate through the face. Later: slow turn as we drop.
+      column.current.rotation.y =
+        headPhase * Math.PI * 0.85 +
+        spineLocal * Math.PI * 0.55 +
+        pointer.current.x * 0.22;
+      column.current.rotation.x =
+        -0.12 + headPhase * 0.18 + spineLocal * 0.08 - pointer.current.y * 0.05;
     }
 
-    if (skullGroup.current) {
-      skullGroup.current.visible = lowerFade > 0.02;
-      skullGroup.current.traverse((obj) => {
-        const mesh = obj as THREE.Mesh;
-        if (!mesh.isMesh) return;
-        const mat = mesh.material as THREE.MeshStandardMaterial | THREE.MeshBasicMaterial;
-        if ("opacity" in mat) {
-          if (mat.userData.baseOpacity == null) {
-            mat.userData.baseOpacity = mat.opacity ?? 1;
-            mat.transparent = true;
-          }
-          mat.opacity = mat.userData.baseOpacity * lowerFade;
-        }
-      });
+    // Camera look target rides down the column
+    const lookY = THREE.MathUtils.lerp(2.85, -4.35, spineLocal);
+    const lookX = Math.sin(spineLocal * Math.PI) * 0.15;
 
-      // Rotate through the face; settle facing mid-ribs
-      skullGroup.current.rotation.y =
-        lowerLocal * Math.PI * 1.25 + pointer.current.x * 0.25;
-      skullGroup.current.rotation.x =
-        -0.18 + lowerLocal * 0.35 - pointer.current.y * 0.05;
-      skullGroup.current.position.y = THREE.MathUtils.lerp(0.4, -0.85, lowerLocal);
-    }
-
-    if (lowerFade < 0.45) {
-      const u = smoothstep(0, PHASE_SPLIT, p);
+    if (p < 0.3) {
+      // Orbit the skull face
+      const a = headPhase * Math.PI * 0.95;
+      const radius = THREE.MathUtils.lerp(3.4, 2.9, headPhase);
       camera.position.x = THREE.MathUtils.lerp(
         camera.position.x,
-        Math.sin(u * Math.PI) * 0.45 + pointer.current.x * 0.18,
+        Math.sin(a) * radius + pointer.current.x * 0.2,
         0.08,
       );
-      camera.position.y = THREE.MathUtils.lerp(3.4, 0.7, u);
-      camera.position.z = THREE.MathUtils.lerp(6.2, 5.0, u);
-      camera.lookAt(0, camera.position.y * 0.7, 0);
-    } else {
-      const l = lowerLocal;
-      // Orbit from face down toward mid-rib half
-      const angle = l * Math.PI * 1.1;
-      camera.position.x = THREE.MathUtils.lerp(
-        camera.position.x,
-        Math.sin(angle) * 2.4 + pointer.current.x * 0.2,
+      camera.position.y = THREE.MathUtils.lerp(
+        camera.position.y,
+        2.7 + Math.cos(a * 0.4) * 0.15,
         0.08,
       );
-      camera.position.y = THREE.MathUtils.lerp(1.6, -0.35, l);
       camera.position.z = THREE.MathUtils.lerp(
-        4.8,
-        3.2 + Math.cos(angle) * 0.8,
+        camera.position.z,
+        Math.cos(a) * radius * 0.85 + 1.6,
         0.08,
       );
-      camera.lookAt(
-        Math.sin(angle * 0.5) * 0.2,
-        THREE.MathUtils.lerp(1.2, -0.55, l),
-        0,
+      camera.lookAt(lookX, 2.75, 0.1);
+    } else {
+      // Descend the spine to the terminal
+      const drop = spineLocal;
+      const sway = Math.sin(drop * Math.PI * 1.2) * 0.55;
+      camera.position.x = THREE.MathUtils.lerp(
+        camera.position.x,
+        sway + pointer.current.x * 0.18,
+        0.08,
       );
+      camera.position.y = THREE.MathUtils.lerp(
+        camera.position.y,
+        THREE.MathUtils.lerp(2.4, -4.1, drop),
+        0.08,
+      );
+      camera.position.z = THREE.MathUtils.lerp(
+        camera.position.z,
+        THREE.MathUtils.lerp(4.2, 3.6, drop),
+        0.08,
+      );
+      camera.lookAt(lookX, lookY, 0);
     }
   });
 
   return (
-    <>
-      <group ref={upperGroup}>
-        <UpperSpine count={10} />
-      </group>
-      <group ref={skullGroup} visible={false}>
-        <SkullTorso />
-      </group>
-    </>
+    <group ref={column}>
+      <AnatomyColumn />
+    </group>
   );
 }
 
@@ -144,33 +121,34 @@ export default function SpineJourneyCanvas({
 
   return (
     <Canvas
-      camera={{ position: [0, 3.4, 6.2], fov: 38, near: 0.1, far: 50 }}
-      dpr={[1, 1.6]}
-      gl={{ antialias: true, alpha: true }}
+      camera={{ position: [0, 2.7, 4.8], fov: 36, near: 0.1, far: 60 }}
+      dpr={[1, 1.5]}
+      gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
       style={{ width: "100%", height: "100%" }}
     >
       <color attach="background" args={["#050505"]} />
-      <fog attach="fog" args={["#050505", 7, 18]} />
-      <ambientLight intensity={0.35} />
+      <fog attach="fog" args={["#050505", 8, 22]} />
+      <ambientLight intensity={0.5} color="#ddd8ce" />
       <directionalLight
-        position={[4, 6, 5]}
-        intensity={1.35}
-        color="#ffffff"
+        position={[3.2, 4.5, 3.5]}
+        intensity={1.05}
+        color="#fff6ea"
       />
       <directionalLight
-        position={[-5, 1, -3]}
+        position={[-3.5, 1, -2]}
         intensity={0.45}
-        color="#a8a8a8"
+        color="#6a6864"
       />
       <spotLight
-        position={[0, 4, 6]}
-        angle={0.5}
-        penumbra={0.6}
-        intensity={1.1}
-        color="#ffffff"
+        position={[1.2, 3.8, 4]}
+        angle={0.45}
+        penumbra={0.9}
+        intensity={0.7}
+        color="#f2ebe0"
       />
       <Suspense fallback={null}>
         <JourneyScene progress={progress} pointer={pointer} />
+        <InkPass />
       </Suspense>
     </Canvas>
   );

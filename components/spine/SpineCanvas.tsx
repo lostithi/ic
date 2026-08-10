@@ -3,6 +3,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
+import InkPass from "@/components/spine/InkPass";
 import { SkullTorso } from "@/components/spine/SpineModels";
 
 function usePointerTarget() {
@@ -45,7 +46,7 @@ function FloatingSkull({
   });
 
   return (
-    <group ref={group} position={[0, -0.2, 0]} scale={1.15}>
+    <group ref={group} position={[0, -0.15, 0]} scale={1.1}>
       <SkullTorso />
     </group>
   );
@@ -57,17 +58,18 @@ export default function SpineCanvas() {
   return (
     <Canvas
       camera={{ position: [0, 0.4, 5.2], fov: 40 }}
-      dpr={[1, 1.75]}
-      gl={{ antialias: true, alpha: true }}
+      dpr={[1, 1.5]}
+      gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
       style={{ width: "100%", height: "100%" }}
     >
       <color attach="background" args={["#050505"]} />
       <fog attach="fog" args={["#050505", 6, 14]} />
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[4, 5, 4]} intensity={1.3} />
-      <directionalLight position={[-4, 0, -2]} intensity={0.4} color="#999" />
+      <ambientLight intensity={0.5} color="#ddd8ce" />
+      <directionalLight position={[3.5, 5, 4]} intensity={1.0} color="#fff6ea" />
+      <directionalLight position={[-4, 0.5, -2]} intensity={0.4} color="#6a6864" />
       <Suspense fallback={null}>
         <FloatingSkull pointer={pointer} />
+        <InkPass />
       </Suspense>
     </Canvas>
   );

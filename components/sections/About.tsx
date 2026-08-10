@@ -17,9 +17,9 @@ export default function About() {
 
               <div className="mt-8 max-w-3xl space-y-6">
                 <p className="font-mono-ui text-sm uppercase leading-[1.75] tracking-[0.05em] text-white/80">
-                  This page is the metaphor: you enter from above and travel
-                  down the structure. Each stop is a vertebra. The whole path is
-                  the brand.
+                  This page is the metaphor: you start at the skull and descend
+                  the column. Each stop is a vertebra. The whole path is the
+                  brand.
                 </p>
 
                 <p className="font-mono-ui text-sm uppercase leading-[1.75] tracking-[0.05em] text-white/80">

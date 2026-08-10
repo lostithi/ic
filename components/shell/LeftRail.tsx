@@ -1,31 +1,64 @@
-import { siteContent } from "@/lib/content";
+"use client";
+
+import { AtlasMark, VertebraGlyph } from "@/components/shell/BoneGlyph";
+import { useActiveSection } from "@/components/shell/useActiveSection";
+import { brand } from "@/lib/brand";
+import { navItems } from "@/lib/nav";
 
 export default function LeftRail() {
-  return (
-    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[72px] border-r border-white/25 bg-black md:block">
-      <div className="flex h-full flex-col">
-        <div className="flex h-20 items-center justify-center border-b border-white/25">
-          <span className="font-mono-ui text-[11px] uppercase tracking-[0.18em]">
-            {siteContent.hero.code}
-          </span>
-        </div>
+  const active = useActiveSection();
 
-        <nav className="flex flex-1 flex-col">
-          {siteContent.rail.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="flex flex-1 items-center justify-center border-b border-white/25 px-2 text-center transition-colors duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-            >
-              <span className="writing-mode-vertical rotate-180 font-mono-ui text-[11px] uppercase tracking-[0.24em]">
-                {item.label}
-              </span>
-            </a>
-          ))}
+  return (
+    <aside className="bone-rail fixed left-0 top-0 z-40 hidden h-screen w-[88px] md:block">
+      <div className="relative flex h-full flex-col">
+        <a
+          href="/"
+          className="bone-rail-brand group flex flex-col items-center gap-2 px-2 py-5"
+          aria-label={`${brand.name} home`}
+        >
+          <AtlasMark className="h-9 w-9 text-[var(--spine-white)] transition-transform duration-300 group-hover:scale-105" />
+          <span className="font-display text-[13px] font-bold uppercase italic tracking-[-0.04em]">
+            {brand.name}
+          </span>
+        </a>
+
+        <div className="bone-rail-cord" aria-hidden />
+
+        <nav className="relative z-[1] flex flex-1 flex-col justify-center gap-1 px-2 py-4">
+          {navItems.map((item, index) => {
+            const isActive = active === item.section;
+            return (
+              <a
+                key={item.code}
+                href={item.href}
+                className={`bone-vertebra ${isActive ? "is-active" : ""}`}
+                aria-current={isActive ? "true" : undefined}
+              >
+                <span className="bone-vertebra-index font-mono-ui">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <VertebraGlyph
+                  active={isActive}
+                  className="bone-vertebra-glyph"
+                />
+                <span className="bone-vertebra-code font-mono-ui">
+                  {item.code}
+                </span>
+                <span className="bone-vertebra-label font-mono-ui">
+                  {item.label}
+                </span>
+              </a>
+            );
+          })}
         </nav>
 
-        <div className="border-t border-white/25 px-2 py-4 text-center font-mono-ui text-[10px] uppercase tracking-[0.16em] text-white/70">
-          2026//
+        <div className="relative z-[1] px-2 pb-5 text-center">
+          <p className="font-mono-ui text-[9px] uppercase tracking-[0.22em] text-white/45">
+            End
+          </p>
+          <p className="mt-1 font-mono-ui text-[10px] uppercase tracking-[0.18em] text-white/70">
+            2026
+          </p>
         </div>
       </div>
     </aside>

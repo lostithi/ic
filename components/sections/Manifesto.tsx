@@ -49,8 +49,8 @@ export default function Manifesto() {
               </div>
 
               <p className="mt-10 max-w-2xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.06em] text-white/75">
-                Descend the system: each section is a vertebra. Together they
-                form one backbone for web, SEO, and strategy.
+                Start at the head. Descend the system. Each section is a
+                vertebra — one backbone for web, SEO, and strategy.
               </p>
             </Reveal>
           </div>

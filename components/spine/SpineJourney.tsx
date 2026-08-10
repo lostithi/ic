@@ -10,13 +10,13 @@ const SpineJourneyCanvas = dynamic(
 );
 
 const STOPS = [
-  { id: "top", label: "C1" },
-  { id: "services", label: "C2" },
-  { id: "manifesto", label: "T1" },
-  { id: "work", label: "FACE" },
-  { id: "process", label: "NECK" },
-  { id: "about", label: "RIBS" },
-  { id: "contact", label: "HALF" },
+  { id: "top", label: "HEAD" },
+  { id: "services", label: "C1" },
+  { id: "manifesto", label: "C2" },
+  { id: "work", label: "T1" },
+  { id: "process", label: "L1" },
+  { id: "about", label: "L2" },
+  { id: "contact", label: "S1" },
 ];
 
 export default function SpineJourney({
@@ -75,7 +75,7 @@ export default function SpineJourney({
 
   return (
     <div className="relative">
-      <div className="pointer-events-none fixed inset-0 z-0 md:left-[72px]">
+      <div className="pointer-events-none fixed inset-0 z-0 md:left-[88px]">
         {reduceMotion ? (
           <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-black">
             <div
@@ -90,10 +90,10 @@ export default function SpineJourney({
               alt=""
               width={280}
               height={360}
-              className="pointer-events-none absolute opacity-30"
+              className="pointer-events-none absolute opacity-30 blur-[1.5px] contrast-150"
               style={{
-                opacity: progressUi < 0.42 ? 0.08 : 0.28 + (progressUi - 0.42) * 0.4,
-                transform: `translateY(${(1 - progressUi) * 40}px) rotate(${progressUi * 25}deg)`,
+                opacity: 0.35 - progressUi * 0.12,
+                transform: `translateY(${progressUi * 80}px) scale(${1 - progressUi * 0.25}) rotate(${progressUi * 12}deg)`,
               }}
             />
           </div>
@@ -104,32 +104,39 @@ export default function SpineJourney({
         <div className="spine-grain" />
       </div>
 
-      <aside className="pointer-events-none fixed right-4 top-1/2 z-30 hidden -translate-y-1/2 md:right-8 md:block">
-        <div className="flex flex-col items-center gap-3">
-          <p className="font-mono-ui text-[9px] uppercase tracking-[0.22em] text-white/50">
-            Descent
+      <aside className="pointer-events-none fixed right-4 top-1/2 z-30 hidden -translate-y-1/2 md:right-7 md:block">
+        <div className="flex flex-col items-center gap-4">
+          <p className="font-mono-ui text-[9px] uppercase tracking-[0.22em] text-white/45">
+            Cord
           </p>
-          <div className="relative h-44 w-px bg-white/15">
+          <div className="relative flex h-52 w-5 flex-col items-center">
+            <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-white/15" />
             <div
               className="absolute left-1/2 top-0 w-px -translate-x-1/2 bg-white"
               style={{ height: `${progressUi * 100}%` }}
             />
-          </div>
-          <ul className="space-y-2 text-center">
-            {STOPS.map((stop) => (
-              <li key={stop.id}>
+            {STOPS.map((stop, i) => {
+              const t = i / (STOPS.length - 1);
+              const reached = progressUi >= t - 0.02;
+              const isActive = activeStop === stop.id;
+              return (
                 <span
-                  className={`font-mono-ui text-[9px] uppercase tracking-[0.18em] ${
-                    activeStop === stop.id ? "text-white" : "text-white/35"
+                  key={stop.id}
+                  className={`absolute left-1/2 h-2 w-2 -translate-x-1/2 rounded-full border transition-colors duration-300 ${
+                    isActive
+                      ? "border-white bg-white"
+                      : reached
+                        ? "border-white/80 bg-white/40"
+                        : "border-white/30 bg-black"
                   }`}
-                >
-                  {stop.label}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className="font-mono-ui text-[9px] uppercase tracking-[0.18em] text-white/45">
-            {String(Math.round(progressUi * 100)).padStart(2, "0")}%
+                  style={{ top: `calc(${t * 100}% - 4px)` }}
+                  title={stop.label}
+                />
+              );
+            })}
+          </div>
+          <p className="font-mono-ui text-[9px] uppercase tracking-[0.18em] text-white/55">
+            {STOPS.find((s) => s.id === activeStop)?.label ?? "HEAD"}
           </p>
         </div>
       </aside>

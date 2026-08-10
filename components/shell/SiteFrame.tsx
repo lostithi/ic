@@ -12,7 +12,7 @@ export default function SiteFrame({
       <MobileNav />
       <LeftRail />
 
-      <div className="relative min-h-screen pt-14 md:ml-[72px] md:pt-0">
+      <div className="relative min-h-screen pt-14 md:ml-[88px] md:pt-0">
         <div className="hidden md:block">
           <TopStatus />
         </div>
