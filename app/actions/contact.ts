@@ -9,7 +9,7 @@ import {
 import { siteContent } from "@/lib/content";
 
 export type ContactFormState = {
-  status: "idle" | "success" | "error" | "fallback";
+  status: "idle" | "success" | "error";
   message: string;
   fieldErrors?: ContactFieldErrors;
 };
@@ -42,18 +42,19 @@ export async function submitContactForm(
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    // Client will submit through Netlify Forms instead.
-    return {
-      status: "fallback",
-      message: "Using Netlify Forms.",
-    };
-  }
-
   const toEmail = process.env.CONTACT_TO_EMAIL || siteContent.contact.email;
   const fromEmail =
     process.env.CONTACT_FROM_EMAIL ||
     "Illegalithi Creations <onboarding@resend.dev>";
+
+  if (!apiKey) {
+    console.error("RESEND_API_KEY is missing");
+    return {
+      status: "error",
+      message:
+        "The form is not connected yet. Email us directly at hello@illegalithi.com.",
+    };
+  }
 
   try {
     const resend = new Resend(apiKey);
@@ -79,8 +80,9 @@ export async function submitContactForm(
     if (error) {
       console.error("Resend error:", error);
       return {
-        status: "fallback",
-        message: "Resend failed; trying Netlify Forms.",
+        status: "error",
+        message:
+          "Could not send right now. Email us directly at hello@illegalithi.com.",
       };
     }
 
@@ -91,8 +93,9 @@ export async function submitContactForm(
   } catch (error) {
     console.error("Contact form error:", error);
     return {
-      status: "fallback",
-      message: "Resend failed; trying Netlify Forms.",
+      status: "error",
+      message:
+        "Could not send right now. Email us directly at hello@illegalithi.com.",
     };
   }
 }

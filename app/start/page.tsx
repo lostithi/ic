@@ -79,21 +79,6 @@ export default function StartPage() {
             </div>
 
             <div className="md:col-span-7">
-              <form
-                name="contact"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                hidden
-                aria-hidden="true"
-              >
-                <input type="text" name="bot-field" />
-                <input type="text" name="name" />
-                <input type="email" name="email" />
-                <input type="text" name="company" />
-                <input type="text" name="projectType" />
-                <input type="text" name="budget" />
-                <textarea name="message" />
-              </form>
               <ContactForm />
             </div>
           </div>
