@@ -25,9 +25,29 @@ npm run preview
 Pretty sites without structure still collapse.  
 Spine Studio builds the digital backbone: message, site architecture, and search as one system.
 
-## Deploy on Cloudflare
+## Contact form (Formspree)
 
-Git is connected to Cloudflare Workers Builds. Required settings:
+1. Sign up at [formspree.io](https://formspree.io)
+2. **New Form** → name it `Spine Studio`
+3. Set the notification email to wherever you want briefs (Gmail is fine)
+4. Copy the form id from your endpoint: `https://formspree.io/f/XXXXXX` → use `XXXXXX`
+5. Add this **Build variable** in Cloudflare Workers Builds (and in `.env.local` for local):
+
+```
+NEXT_PUBLIC_FORMSPREE_FORM_ID=XXXXXX
+```
+
+6. Redeploy (public env vars are baked in at build time)
+
+Also set:
+
+```
+NEXT_PUBLIC_SITE_URL=https://spinestudio.uk
+```
+
+Confirm the first Formspree submission email if they ask you to verify the inbox.
+
+## Deploy on Cloudflare
 
 | Setting | Value |
 |---|---|
@@ -35,28 +55,10 @@ Git is connected to Cloudflare Workers Builds. Required settings:
 | Deploy command | `npx opennextjs-cloudflare deploy -- --keep-vars` |
 | Root directory | `/` (repo root) |
 
-Do **not** use plain `npx wrangler deploy` as the only deploy step unless `wrangler.jsonc` is already in the repo (it is now). Prefer `opennextjs-cloudflare deploy`.
-
 ### Domain
 
 1. Cloudflare → Workers → `spine` → **Settings → Domains & Routes**
 2. Add custom domains: `spinestudio.uk` and `www.spinestudio.uk`
-3. DNS for the zone should already be on Cloudflare (you bought it there)
-
-### Environment variables
-
-Workers → Settings → Variables and Secrets (also set the same in Workers Builds if prompted):
-
-| Key | Required | Notes |
-|---|---|---|
-| `RESEND_API_KEY` | Yes (for form) | From [resend.com](https://resend.com/api-keys) |
-| `CONTACT_TO_EMAIL` | Recommended | Your real inbox. With `onboarding@resend.dev`, Resend only delivers to the Resend account email. |
-| `CONTACT_FROM_EMAIL` | Recommended | Start with `Spine Studio <onboarding@resend.dev>`. Custom `@spinestudio.uk` only after Resend domain verify. |
-| `NEXT_PUBLIC_SITE_URL` | Recommended | `https://spinestudio.uk` |
-
-Set these on the **Worker runtime** (`spine` → Settings → Variables and Secrets), not only in Workers Builds. Deploy uses `--keep-vars` so dashboard secrets are not wiped.
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional | GA4 |
-| `NEXT_PUBLIC_META_PIXEL_ID` | Optional | Meta / Instagram ads |
 
 ### Share line
 

@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import type { ContactFieldErrors } from "@/lib/contact";
+import {
+  payloadFromFormData,
+  validateContactPayload,
+  type ContactFieldErrors,
+} from "@/lib/contact";
+import { getFormspreeEndpoint } from "@/lib/formspree";
 import { brand } from "@/lib/brand";
 
 type FormState = {
@@ -25,35 +30,85 @@ export default function ContactForm() {
     if (pending) return;
 
     const form = event.currentTarget;
-    const body = new FormData(form);
+    const formData = new FormData(form);
+    const payload = payloadFromFormData(formData);
+    const fieldErrors = validateContactPayload(payload);
+
+    if (Object.keys(fieldErrors).length > 0) {
+      setState({
+        status: "error",
+        message: "Check the highlighted fields and try again.",
+        fieldErrors,
+      });
+      return;
+    }
+
+    if (payload.honeypot) {
+      setState({
+        status: "success",
+        message: "Message received. We'll get back to you shortly.",
+      });
+      return;
+    }
+
+    const endpoint = getFormspreeEndpoint();
+    if (!endpoint) {
+      setState({
+        status: "error",
+        message: `Form is not connected yet. Email us directly at ${brand.email}.`,
+      });
+      return;
+    }
+
+    // Formspree fields
+    const body = new FormData();
+    body.set("name", payload.name);
+    body.set("email", payload.email);
+    body.set("company", payload.company);
+    body.set("projectType", payload.projectType);
+    body.set("budget", payload.budget);
+    body.set("message", payload.message);
+    body.set("_subject", `Spine Studio inquiry from ${payload.name}`);
+    body.set("_replyto", payload.email);
 
     setPending(true);
     setState({ status: "idle", message: "" });
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(endpoint, {
         method: "POST",
         body,
+        headers: { Accept: "application/json" },
       });
 
-      let result: FormState;
+      if (response.ok) {
+        setState({
+          status: "success",
+          message: "Message received. We'll get back to you shortly.",
+        });
+        form.reset();
+        return;
+      }
+
+      let detail = "";
       try {
-        result = (await response.json()) as FormState;
-      } catch {
-        result = {
-          status: "error",
-          message: `Could not send right now. Email us directly at ${brand.email}.`,
+        const data = (await response.json()) as {
+          error?: string;
+          errors?: Array<{ message?: string }>;
         };
+        detail =
+          data.error ||
+          data.errors?.map((item) => item.message).filter(Boolean).join(" ") ||
+          "";
+      } catch {
+        detail = "";
       }
 
       setState({
-        status: result.status === "success" ? "success" : "error",
+        status: "error",
         message:
-          result.message ||
-          (result.status === "success"
-            ? "Message received. We'll get back to you shortly."
-            : `Could not send right now. Email us directly at ${brand.email}.`),
-        fieldErrors: result.fieldErrors,
+          detail ||
+          `Could not send right now. Email us directly at ${brand.email}.`,
       });
     } catch {
       setState({
