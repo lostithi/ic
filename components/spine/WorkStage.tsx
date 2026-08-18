@@ -26,7 +26,7 @@ export default function WorkStage({
 
   return (
     <div className="relative">
-      <div className="pointer-events-none fixed inset-0 z-0 md:left-[88px]">
+      <div className="pointer-events-none fixed inset-0 z-0">
         {reduceMotion ? (
           <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f2f0ea]">
             <Image

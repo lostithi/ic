@@ -137,7 +137,12 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5" noValidate>
+    <form
+      onSubmit={onSubmit}
+      className="space-y-5"
+      noValidate
+      suppressHydrationWarning
+    >
       <div className="grid gap-5 md:grid-cols-2">
         <div>
           <label htmlFor="name" className={labelClassName}>
@@ -151,6 +156,7 @@ export default function ContactForm() {
             autoComplete="name"
             className="field-spine"
             placeholder="Your name"
+            suppressHydrationWarning
           />
           {state.fieldErrors?.name ? (
             <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.14em]">
@@ -171,6 +177,7 @@ export default function ContactForm() {
             autoComplete="email"
             className="field-spine"
             placeholder="you@brand.com"
+            suppressHydrationWarning
           />
           {state.fieldErrors?.email ? (
             <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[0.14em]">
@@ -192,6 +199,7 @@ export default function ContactForm() {
             autoComplete="organization"
             className="field-spine"
             placeholder="Brand / studio"
+            suppressHydrationWarning
           />
         </div>
 

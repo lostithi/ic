@@ -9,7 +9,7 @@ export default function WorkPreview() {
         <Reveal>
           <div className="mb-10 flex max-w-6xl flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="kicker-line mb-4">[VERTEBRA // WORK]</p>
+              <p className="kicker-line mb-4">[WORK]</p>
               <h2 className="font-display max-w-5xl text-4xl font-bold uppercase italic tracking-[-0.06em] md:text-7xl lg:text-8xl">
                 Work shaped around structure, clarity, and systems that stand
                 up.

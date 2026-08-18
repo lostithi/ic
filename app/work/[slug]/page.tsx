@@ -48,7 +48,7 @@ export default async function WorkCasePage({ params }: WorkCasePageProps) {
   return (
     <SiteFrame>
       <main>
-        <article className="px-5 py-16 md:px-8 md:py-24">
+        <article className="shell-page">
           <Reveal>
             <div className="mb-10 max-w-5xl">
               <p className="kicker-line mb-4">

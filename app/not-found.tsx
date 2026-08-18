@@ -4,7 +4,7 @@ import SiteFrame from "@/components/shell/SiteFrame";
 export default function NotFound() {
   return (
     <SiteFrame>
-      <main className="flex min-h-[70vh] items-center px-5 py-24 md:px-8">
+      <main className="shell-page flex min-h-[70vh] items-center">
         <div className="max-w-3xl">
           <p className="kicker-line mb-4">[404]</p>
           <h1 className="font-display text-5xl font-bold uppercase italic tracking-[-0.06em] md:text-7xl">

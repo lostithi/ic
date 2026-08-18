@@ -17,7 +17,7 @@ export default function WorkPage() {
     <SiteFrame>
       <WorkStage>
         <main>
-          <section className="px-5 py-16 md:px-8 md:py-24">
+          <section className="shell-page">
             <Reveal>
               <div className="mb-10 max-w-xl md:max-w-2xl lg:max-w-3xl">
                 <p className="kicker-line mb-4">[WORK // SPECIMEN]</p>

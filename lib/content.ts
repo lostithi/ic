@@ -2,7 +2,6 @@ import { brand } from "@/lib/brand";
 
 export const siteContent = {
   hero: {
-    code: brand.code,
     titleTop: "SPINE",
     titleBottom: "STUDIO",
     description: brand.offer.support,

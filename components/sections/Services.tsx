@@ -1,9 +1,7 @@
-import Reveal from "@/components/ui/Reveal";
-
 const services = [
   {
     id: "01",
-    title: "WEB.DEV",
+    title: "WEB",
     content: (
       <>
         Focused websites built as brand{" "}
@@ -15,7 +13,7 @@ const services = [
   },
   {
     id: "02",
-    title: "SEO.OPT",
+    title: "SEO",
     content: (
       <>
         Search architecture that supports the same story as the site: technical{" "}
@@ -41,39 +39,19 @@ const services = [
 export default function Services() {
   return (
     <section id="services" className="vertebra-stop">
-      <div className="vertebra-panel">
-        <Reveal>
-          <div className="mb-10 max-w-6xl">
-            <p className="kicker-line mb-4">[VERTEBRA // SERVICES]</p>
-            <h2 className="font-display max-w-5xl text-4xl font-bold uppercase italic tracking-[-0.06em] md:text-7xl lg:text-8xl">
-              Built for brands that need a{" "}
-              <span className="inline-box">spine</span>, not another{" "}
-              <span className="text-stroke-white">template</span>.
-            </h2>
-          </div>
-        </Reveal>
-
-        <div className="border-t border-white/20">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="spine-row grid gap-4 border-b border-white/20 py-6 md:grid-cols-12 md:gap-6 md:py-8"
-            >
-              <div className="md:col-span-2">
-                <p className="font-mono-ui text-[11px] uppercase tracking-[0.24em]">
-                  [{service.id}]
-                </p>
-              </div>
-              <div className="md:col-span-4">
-                <h3 className="font-display text-3xl font-bold uppercase italic tracking-[-0.06em] md:text-5xl">
-                  {service.title}
-                </h3>
-              </div>
-              <div className="md:col-span-6">
-                <p className="max-w-xl font-mono-ui text-sm uppercase leading-[1.5] tracking-[0.06em]">
-                  {service.content}
-                </p>
-              </div>
+      <div className="vertebra-panel svc-panel">
+        <div className="svc-head">
+          <p className="kicker-line">[SERVICES]</p>
+          <h2 className="svc-lede">
+            Built for brands that need a <span className="inline-box">spine</span>
+            , not another <span className="svc-stroke">template</span>.
+          </h2>
+        </div>
+        <div>
+          {services.map((item) => (
+            <div key={item.id} className="svc-row">
+              <h3 className="svc-title">{item.title}</h3>
+              <p className="svc-copy">{item.content}</p>
             </div>
           ))}
         </div>

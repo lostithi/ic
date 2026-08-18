@@ -1,78 +1,90 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { brand } from "@/lib/brand";
 import { siteContent } from "@/lib/content";
 
 export default function Hero() {
-  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const [motion, setMotion] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [glitch, setGlitch] = useState(false);
 
   useEffect(() => {
-    const title = titleRef.current;
-    if (!title) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setReady(true);
+      return;
+    }
+
+    setMotion(true);
+    const frame = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    const headline = headlineRef.current;
+    if (!headline) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const onMove = (event: PointerEvent) => {
-      const nx = (event.clientX / window.innerWidth - 0.5) * 2;
-      const ny = (event.clientY / window.innerHeight - 0.5) * 2;
-      title.style.transform = `translate3d(${nx * 8}px, ${ny * 5}px, 0)`;
+      const rect = headline.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+      headline.style.setProperty("--hx", `${x * 7}deg`);
+      headline.style.setProperty("--hy", `${y * -5}deg`);
+      headline.style.setProperty("--mx", `${x * 10}px`);
+      headline.style.setProperty("--my", `${y * 6}px`);
     };
 
     const onLeave = () => {
-      title.style.transform = "translate3d(0,0,0)";
+      headline.style.setProperty("--hx", "0deg");
+      headline.style.setProperty("--hy", "0deg");
+      headline.style.setProperty("--mx", "0px");
+      headline.style.setProperty("--my", "0px");
     };
 
-    window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("pointerleave", onLeave);
+    headline.addEventListener("pointermove", onMove);
+    headline.addEventListener("pointerleave", onLeave);
+
     return () => {
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerleave", onLeave);
+      headline.removeEventListener("pointermove", onMove);
+      headline.removeEventListener("pointerleave", onLeave);
     };
   }, []);
 
+  const triggerGlitch = () => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    setGlitch(true);
+    window.setTimeout(() => setGlitch(false), 440);
+  };
+
   return (
-    <section
-      id="top"
-      className="vertebra-stop relative flex min-h-[100svh] items-end"
-    >
-      <div className="vertebra-panel w-full px-5 pb-10 pt-28 md:px-8 md:pb-14">
-        <div className="grid items-end gap-10 md:grid-cols-12 md:gap-6">
-          <div className="md:col-span-8">
-            <p className="mb-5 font-mono-ui text-[11px] uppercase tracking-[0.24em] text-white/60">
-              {siteContent.hero.code} // ENTER FROM ABOVE
-            </p>
-            <h1
-              ref={titleRef}
-              className="font-display leading-none uppercase italic transition-transform duration-300 ease-out will-change-transform"
-            >
-              <span className="block text-[5.2rem] font-bold tracking-[-0.08em] sm:text-[7rem] md:text-[10rem] lg:text-[12rem]">
-                {siteContent.hero.titleTop}
-              </span>
-              <span className="mt-3 block text-[2.2rem] font-bold tracking-[-0.05em] sm:text-[3rem] md:text-[4.2rem]">
-                <span className="inline-box">{siteContent.hero.titleBottom}</span>
-              </span>
-            </h1>
-          </div>
-
-          <div className="md:col-span-4 md:pb-4">
-            <p className="max-w-[26rem] font-mono-ui text-[0.95rem] uppercase leading-[1.45] tracking-[0.05em] md:text-[1.02rem]">
-              <span className="inline-tag">WEB</span>{" "}
-              <span className="inline-tag">SEO</span>{" "}
-              <span className="inline-tag">STRATEGY</span>
-              <br />
-              <br />
-              Scroll to descend the backbone — from alignment at the top to a
-              standing system at the base.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={brand.offer.primaryHref} className="btn-solid">
-                {brand.offer.primaryCta}
-              </a>
-              <a href={brand.offer.secondaryHref} className="btn-ghost">
-                {brand.offer.secondaryCta}
-              </a>
-            </div>
-          </div>
+    <section id="top" className="hero-v2 vertebra-stop relative">
+      <div className="hero-v2-panel vertebra-panel">
+        <h1
+          ref={headlineRef}
+          className={`hero-v2-headline${motion ? " hero-v2-headline--motion" : ""}${ready ? " is-ready" : ""}${glitch ? " is-glitch" : ""}`}
+          onPointerDown={triggerGlitch}
+        >
+          <span className="hero-v2-headline-top">{siteContent.hero.titleTop}</span>
+          <span className="hero-v2-headline-bottom">{siteContent.hero.titleBottom}</span>
+        </h1>
+        <p className="hero-v2-body">{siteContent.hero.description}</p>
+        <div className="hero-v2-tags">
+          <span className="hero-v2-tag">WEB</span>
+          <span className="hero-v2-tag">SEO</span>
+          <span className="hero-v2-tag">STRATEGY</span>
+        </div>
+        <div className="hero-v2-ctas">
+          <a href={brand.offer.primaryHref} className="btn-solid">
+            {brand.offer.primaryCta}
+          </a>
+          <a href={brand.offer.secondaryHref} className="btn-ghost">
+            {brand.offer.secondaryCta}
+          </a>
         </div>
       </div>
     </section>

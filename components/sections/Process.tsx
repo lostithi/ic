@@ -31,40 +31,35 @@ const steps = [
 export default function Process() {
   return (
     <section id="process" className="vertebra-stop">
-      <div className="vertebra-panel">
-        <Reveal>
-          <div className="mb-10 max-w-5xl">
-            <p className="kicker-line mb-4">[VERTEBRA // PROCESS]</p>
-            <h2 className="font-display text-4xl font-bold uppercase italic tracking-[-0.05em] md:text-6xl lg:text-7xl">
-              Align first. Then structure, build, and strengthen until the
-              system stands on its own.
-            </h2>
-          </div>
-        </Reveal>
-
-        <div className="border-t border-white/20">
-          {steps.map((step) => (
-            <div
-              key={step.id}
-              className="spine-row grid gap-4 border-b border-white/20 py-6 md:grid-cols-12 md:gap-6 md:py-8"
-            >
-              <div className="md:col-span-2">
-                <p className="font-mono-ui text-[11px] uppercase tracking-[0.24em]">
-                  [{step.id}]
-                </p>
-              </div>
-              <div className="md:col-span-3">
-                <h3 className="font-display text-3xl font-bold uppercase italic tracking-[-0.06em] md:text-4xl">
-                  {step.title}
-                </h3>
-              </div>
-              <div className="md:col-span-7">
-                <p className="max-w-2xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em]">
-                  {step.text}
-                </p>
-              </div>
+      <div className="vertebra-panel proc-panel">
+        <div className="proc-top">
+          <p className="kicker-line proc-kicker">[PROCESS]</p>
+          <Reveal>
+            <div className="proc-top-row">
+              <h2 className="proc-thesis">
+                Align first. Then structure, build, and strengthen until the
+                system stands on its own.
+              </h2>
+              <p className="proc-cue">
+                <span className="proc-cue-label">Five phases</span>
+                <span className="proc-cue-arrow" aria-hidden="true">
+                  →
+                </span>
+              </p>
             </div>
-          ))}
+          </Reveal>
+        </div>
+
+        <div className="proc-scroll-outer">
+          <ol className="proc-scroll">
+            {steps.map((step) => (
+              <li key={step.id} className="proc-card">
+                <span className="proc-card-num">{step.id}</span>
+                <h3 className="proc-card-title">{step.title}</h3>
+                <p className="proc-card-copy">{step.text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

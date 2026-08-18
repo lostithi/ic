@@ -6,7 +6,7 @@ export default function About() {
       <div className="vertebra-panel">
         <div className="grid gap-10 md:grid-cols-12 md:gap-6">
           <div className="md:col-span-3">
-            <p className="kicker-line">[VERTEBRA // WHY SPINE]</p>
+            <p className="kicker-line">[WHY SPINE]</p>
           </div>
 
           <div className="md:col-span-9">
