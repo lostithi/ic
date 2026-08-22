@@ -25,9 +25,8 @@ export default function WorkPage() {
                   Selected systems pinned with structure.
                 </h1>
                 <p className="mt-6 max-w-xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em] text-white/75">
-                  Case notes held in place — web, SEO, and strategy as one fixed
-                  column. Replace these with live client outcomes as projects
-                  ship.
+                  Case notes from web, SEO, and strategy builds — including the
+                  studio site, descent experience, and selected client systems.
                 </p>
               </div>
             </Reveal>

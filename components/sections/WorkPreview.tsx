@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
-import { caseStudies } from "@/lib/work";
+import { getPreviewCaseStudies } from "@/lib/work";
 
 export default function WorkPreview() {
+  const projects = getPreviewCaseStudies();
   return (
     <section id="work" className="vertebra-stop">
       <div className="vertebra-panel">
@@ -22,7 +23,7 @@ export default function WorkPreview() {
         </Reveal>
 
         <div className="border-t border-white/20">
-          {caseStudies.map((project) => (
+          {projects.map((project) => (
             <Link
               key={project.slug}
               href={`/work/${project.slug}`}

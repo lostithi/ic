@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-18T17:03:00.000Z",
+  "title": "Design System: Spine Studio",
+  "extensions": {
+    "colorMeta": {
+      "bone-white": { "role": "primary", "displayName": "Bone White", "canonical": "#f4f4f1" },
+      "void-black": { "role": "neutral", "displayName": "Void Black", "canonical": "#050505" },
+      "ink-black": { "role": "neutral", "displayName": "Ink Black", "canonical": "#0a0a0a" },
+      "mute": { "role": "neutral", "displayName": "Mute", "canonical": "rgba(244, 244, 241, 0.62)" },
+      "line": { "role": "neutral", "displayName": "Line", "canonical": "rgba(244, 244, 241, 0.28)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero lockup and overlay index labels." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "title": { "displayName": "Title", "purpose": "Left column nav." },
+      "body": { "displayName": "Body", "purpose": "Supporting copy." },
+      "label": { "displayName": "Label", "purpose": "Kickers, buttons, fields, INDEX cue." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-exit", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Column lean, overlay wipe, cue reveal." },
+      { "name": "duration-overlay", "value": "640ms", "purpose": "Mobile index clip wipe in." },
+      { "name": "duration-overlay-out", "value": "380ms", "purpose": "Mobile index clip wipe out." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid bone CTA. Inverts to outline on hover.",
+      "html": "<button class=\"ds-btn-primary\">Start with structure</button>",
+      "css": ".ds-btn-primary { display: inline-flex; border: 1px solid #f4f4f1; background: #f4f4f1; color: #050505; padding: 0.75rem 1.25rem; font-family: \"IBM Plex Mono\", ui-monospace, monospace; font-size: 0.875rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background-color 200ms ease, color 200ms ease; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { background: transparent; color: #f4f4f1; outline: none; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Outline bone CTA. Fills on hover.",
+      "html": "<button class=\"ds-btn-ghost\">See selected work</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; border: 1px solid #f4f4f1; background: transparent; color: #f4f4f1; padding: 0.75rem 1.25rem; font-family: \"IBM Plex Mono\", ui-monospace, monospace; font-size: 0.875rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background-color 200ms ease, color 200ms ease; } .ds-btn-ghost:hover, .ds-btn-ghost:focus-visible { background: #f4f4f1; color: #050505; outline: none; }"
+    },
+    {
+      "name": "Spine Field",
+      "kind": "input",
+      "refersTo": "field-spine",
+      "description": "Uppercase mono field; inverts on focus.",
+      "html": "<input class=\"ds-field\" placeholder=\"Your name\" />",
+      "css": ".ds-field { width: 100%; border: 1px solid #f4f4f1; background: transparent; padding: 0.75rem 1rem; font-family: \"IBM Plex Mono\", ui-monospace, monospace; font-size: 0.875rem; letter-spacing: 0.08em; text-transform: uppercase; color: #f4f4f1; outline: none; } .ds-field::placeholder { color: rgba(244, 244, 241, 0.4); } .ds-field:focus { background: #f4f4f1; color: #050505; } .ds-field:focus::placeholder { color: rgba(5, 5, 5, 0.45); }"
+    },
+    {
+      "name": "Column Nav",
+      "kind": "nav",
+      "refersTo": "title",
+      "description": "Italic outlined labels; fill when current.",
+      "html": "<nav class=\"ds-col\"><a class=\"ds-col-link is-active\">Services</a><a class=\"ds-col-link\">Work</a></nav>",
+      "css": ".ds-col { display: flex; flex-direction: column; gap: 1.65rem; } .ds-col-link { color: rgba(244, 244, 241, 0.18); -webkit-text-stroke: 1px rgba(244, 244, 241, 0.62); font-family: Oswald, ui-sans-serif, sans-serif; font-size: 1.35rem; font-style: italic; font-weight: 700; letter-spacing: -0.04em; line-height: 0.85; text-transform: uppercase; text-decoration: none; } .ds-col-link.is-active, .ds-col-link:hover, .ds-col-link:focus-visible { color: #f4f4f1; -webkit-text-stroke-color: transparent; outline: none; }"
+    },
+    {
+      "name": "Inline Tag",
+      "kind": "chip",
+      "refersTo": "label",
+      "description": "Sharp mono capsule used in the hero (WEB / SEO / STRATEGY).",
+      "html": "<span class=\"ds-tag\">Web</span>",
+      "css": ".ds-tag { display: inline-block; font-family: \"IBM Plex Mono\", ui-monospace, monospace; font-size: 0.72em; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.2em 0.45em; border: 1px solid #f4f4f1; color: #f4f4f1; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Vertebral Descent",
+    "overview": "You enter at the skull and drop through a xeroxed column. Type is vertebrae, grain is bone dust, black is the canal. Oswald italic display versus IBM Plex Mono instrumentation. No second accent.",
+    "keyCharacteristics": [
+      "Skull at the top, column below",
+      "Oswald italic vs IBM Plex Mono",
+      "Sharp corners, 1px bone strokes, invert-on-hover",
+      "Ink/xerox grain over 3D"
+    ],
+    "rules": [
+      { "name": "The One Bone Rule", "body": "Do not introduce a second accent.", "section": "colors" },
+      { "name": "The Stroke Fill Rule", "body": "Idle nav is outlined; active and hover fill bone.", "section": "typography" },
+      { "name": "The Flat Chrome Rule", "body": "UI chrome is flat; only the specimen occupies space.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep display italic, uppercase, tight tracking.",
+      "Do invert bone and void for hover and focus.",
+      "Do treat nav as a column/spine."
+    ],
+    "donts": [
+      "Don't add colored accents or rounded pills.",
+      "Don't put a sticky multi-link header over the descent.",
+      "Don't fabricate client proof."
+    ]
+  }
+}
