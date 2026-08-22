@@ -25,8 +25,8 @@ export default function WorkPage() {
                   Selected systems pinned with structure.
                 </h1>
                 <p className="mt-6 max-w-xl font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em] text-white/75">
-                  Case notes from web, SEO, and strategy builds — including the
-                  studio site, descent experience, and selected client systems.
+                  Product builds, research prototypes, and structured web systems
+                  — from AI football analysis to clinical continuity demos.
                 </p>
               </div>
             </Reveal>

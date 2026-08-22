@@ -10,11 +10,81 @@ export type CaseStudy = {
   challenge: string;
   approach: string[];
   outcome: string;
+  repo?: string;
 };
 
 export const caseStudies: CaseStudy[] = [
   {
     id: "01",
+    slug: "pitchiq",
+    title: "PITCHIQ",
+    type: "AI PRODUCT / FOOTBALL ANALYSIS PLATFORM",
+    summary:
+      "An analyst-grade football platform — upload a match, run an async video pipeline, and surface evidence-first tactical insights, timelines, and reports for coaches and scouts.",
+    year: "2026",
+    role: "Product design, full-stack architecture, video analytics pipeline",
+    services: ["WEB", "STRATEGY"],
+    repo: "https://github.com/lostithi/pitchiq",
+    challenge:
+      "Football analysis tools often blur raw tracking data with AI interpretation, inventing stats or hiding uncertainty. Coaches and analysts need a workstation that separates what was detected from what it means — and scales from demo review to uploaded match video without breaking trust.",
+    approach: [
+      "Built a dark analyst UI in Next.js with role-based access for coach, analyst, and player workflows.",
+      "Designed a modular async pipeline from preprocess through pitch calibration, detection, tracking, events, and tactical interpretation.",
+      "Stored raw tracking separately from interpreted insights and reports so evidence stays inspectable.",
+      "Shipped a demo match path for pitch, timeline, heatmaps, and AI report review without waiting on computer vision.",
+      "Abstracted external football data behind a provider interface with mock defaults for local development.",
+    ],
+    outcome:
+      "A structured MVP for match upload, processing status, manual correction, and evidence-first reporting — ready to extend toward production video analytics without collapsing detections into black-box summaries.",
+  },
+  {
+    id: "02",
+    slug: "cadence-hf",
+    title: "CADENCE HF",
+    type: "HEALTH TECH DEMO / CARE CONTINUITY WORKSPACE",
+    summary:
+      "A synthetic heart-failure continuity demo — patient index, routed alerts with clinician feedback, source-linked summaries, timelines, and a lightweight knowledge graph.",
+    year: "2026",
+    role: "Product design, front-end system, synthetic clinical data modelling",
+    services: ["WEB", "STRATEGY"],
+    repo: "https://github.com/lostithi/cadence-hf",
+    challenge:
+      "Post-discharge heart-failure care breaks across notes, labs, referrals, and handoffs. Clinicians need continuity gaps surfaced early — not another dashboard of unrelated widgets — while demos must stay fully synthetic and free of real PHI.",
+    approach: [
+      "Designed a brand-first landing flow into a workspace for patient index and alert inbox review.",
+      "Built patient detail views for alerts, gaps, summaries, timelines, graphs, and linked sources in one case surface.",
+      "Modelled synthetic patients and continuity artifacts through a pipeline that assembles timeline, gap, graph, summary, and alert data.",
+      "Wired alert feedback to API routes so clinician actions can be captured and reflected in the demo state.",
+      "Used Fraunces and Plus Jakarta Sans with motion for a calm clinical product tone distinct from generic admin UI.",
+    ],
+    outcome:
+      "An interactive continuity prototype that shows how routed alerts, gap detection, and source-linked summaries could sit in one workspace — built entirely on de-identified synthetic data for safe demonstration.",
+  },
+  {
+    id: "03",
+    slug: "ar-surgical-nav-prototype",
+    title: "AR SURGICAL NAV PROTOTYPE",
+    type: "RESEARCH PROTOTYPE / SURGICAL NAVIGATION SIMULATION",
+    summary:
+      "A simulation-based dynamic AR map for soft-tissue liver tumour surgery — anatomy overlays, instrument tracking, phase recognition, deformation, and registration confidence warnings.",
+    year: "2026",
+    role: "Research prototyping, 3D simulation, registration experiment design",
+    services: ["WEB", "STRATEGY"],
+    repo: "https://github.com/lostithi/ar-surgical-nav-prototype",
+    challenge:
+      "Surgical navigation systems must communicate planned paths, instrument position, and registration drift without pretending to be clinical-grade devices. The prototype needed to demonstrate patient-specific overlays, soft-tissue deformation, and recalibration logic in a research-safe simulation environment.",
+    approach: [
+      "Generated synthetic CT anatomy through an offline Python pipeline feeding a Three.js/Vite viewer.",
+      "Built interactive controls for orbit, instrument movement, organ deformation, retraction, and recalibration baking.",
+      "Surfaced target registration error and confidence states when deformation pushes the map out of alignment.",
+      "Added surgical-phase recognition, planned resection paths, and structured post-op JSON export for session review.",
+      "Documented research-only boundaries clearly — simulation and education, not clinical decision support.",
+    ],
+    outcome:
+      "A working research prototype that makes registration uncertainty visible instead of hidden — useful for exploring AR navigation concepts, offline registration experiments, and surgeon-facing warning patterns before any real-device path.",
+  },
+  {
+    id: "04",
     slug: "cg-investment-holdings",
     title: "CG INVESTMENT HOLDINGS",
     type: "CORPORATE WEBSITE / DIGITAL POSITIONING",
@@ -35,7 +105,7 @@ export const caseStudies: CaseStudy[] = [
       "A sharper corporate presence that reads as one coherent group, easier to understand in the first scroll, and structured to support future venture pages without losing clarity.",
   },
   {
-    id: "02",
+    id: "05",
     slug: "studio-concept-system",
     title: "STUDIO CONCEPT SYSTEM",
     type: "BRAND SYSTEM / WEB EXPERIMENT",
@@ -53,10 +123,10 @@ export const caseStudies: CaseStudy[] = [
       "Stress-tested the system across landing, work, and manifesto-style pages.",
     ],
     outcome:
-      "A reusable anti-template direction that became the foundation for Spine's live site: xerox contrast, mono signals, and structure-first storytelling.",
+      "A reusable anti-template direction for structure-first studio sites: high-contrast type, mono signals, and hierarchy over card-grid defaults.",
   },
   {
-    id: "03",
+    id: "06",
     slug: "seo-landing-page-framework",
     title: "SEO + LANDING PAGE FRAMEWORK",
     type: "SEARCH STRUCTURE / CONVERSION DESIGN",
@@ -76,98 +146,14 @@ export const caseStudies: CaseStudy[] = [
     outcome:
       "A modular framework that makes new landing pages faster to ship, easier to rank against, and clearer at converting attention into qualified inquiries.",
   },
-  {
-    id: "04",
-    slug: "spine-studio-site",
-    title: "SPINE STUDIO SITE",
-    type: "MARKETING SITE / BRAND EXPERIENCE",
-    summary:
-      "The studio's own presence rebuilt as a black-and-white xerox one-pager — structure-first sections, animated hero lockup, horizontal process strip, and contact-to-footer conversion path.",
-    year: "2026",
-    role: "Art direction, front-end system, content architecture, deploy",
-    services: ["WEB", "STRATEGY", "SEO"],
-    challenge:
-      "The previous site read like a template with a metaphor pasted on top. Navigation, services, process, and contact all competed for attention without a single vertical logic. The studio needed its own offer to feel as structured as what it sells.",
-    approach: [
-      "Rebuilt the homepage as vertebra stops: services, manifesto, work, process, and contact on one descent.",
-      "Replaced legacy chrome with a spine-index header, sticky logo treatment on inner pages, and a terminus footer with the contact headline.",
-      "Standardized section kickers, removed specimen clutter, and tightened copy around web, SEO, and strategy as one system.",
-      "Shipped on Cloudflare Workers via OpenNext with Formspree intake and edge-ready static generation for work routes.",
-    ],
-    outcome:
-      "A live studio site that demonstrates the backbone offer in its own layout — clearer hierarchy, faster path to brief, and a visual language the team can extend without reverting to card-grid defaults.",
-  },
-  {
-    id: "05",
-    slug: "spine-descent-journey",
-    title: "SPINE DESCENT JOURNEY",
-    type: "3D EXPERIENCE / SCROLL NARRATIVE",
-    summary:
-      "Scroll-driven anatomy from skull through vertebrae — Three.js models, ink-threshold post-processing, and section-synced navigation that turns the homepage into a physical descent.",
-    year: "2026",
-    role: "3D direction, interaction design, WebGL implementation",
-    services: ["WEB", "STRATEGY"],
-    challenge:
-      "A static marketing page could not carry the spine metaphor. The experience needed to feel like movement through a system, not a parallax wallpaper, while staying performant on real devices and respecting reduced-motion preferences.",
-    approach: [
-      "Built a scroll-scrubbed 3D path with skull, spine, and pin-driven staging tied to homepage sections.",
-      "Applied xerox and chalk ink passes so renders read as photocopied anatomy instead of glossy 3D.",
-      "Synced the spine nav dock to active sections and hid fixed chrome on inner routes where the metaphor would clash.",
-      "Added grain, void backgrounds, and fallbacks so content stays readable when WebGL or motion is unavailable.",
-    ],
-    outcome:
-      "A brand mechanism that earns the studio name — visitors descend the column instead of scanning another flat landing page, with navigation that reflects where they are in the system.",
-  },
-  {
-    id: "06",
-    slug: "work-specimen-archive",
-    title: "WORK SPECIMEN ARCHIVE",
-    type: "PORTFOLIO INDEX / CASE SYSTEM",
-    summary:
-      "An inverted xerox work index with specimen staging, pinned case rows, and detail pages that carry the same structural tone as the homepage spine.",
-    year: "2026",
-    role: "Portfolio architecture, UI system, case template",
-    services: ["WEB"],
-    challenge:
-      "Work pages often break the main site's visual world — white boxes, generic grids, and case studies that read like PDF exports. The archive needed to feel like part of the same specimen file, not a separate template.",
-    approach: [
-      "Built a dedicated work stage with inverted xerox rendering and grain so the index reads as a pinned specimen sheet.",
-      "Designed list rows with index IDs, type lines, and invert-on-hover interaction consistent with the site's editorial tone.",
-      "Templated case detail pages for challenge, approach, and outcome blocks with shared mono and display hierarchy.",
-      "Connected the homepage work preview, work index, and case routes through one data source for easier updates as projects ship.",
-    ],
-    outcome:
-      "A portfolio system that scales with new case studies without redesigning each launch — and keeps selected work inside the same structural language as the studio site itself.",
-  },
-  {
-    id: "07",
-    slug: "skull-navigation-system",
-    title: "SKULL NAVIGATION SYSTEM",
-    type: "NAVIGATION / INTERACTIVE CHROME",
-    summary:
-      "A spine-index navigation layer with 3D skull staging, mobile sheet, and route-aware logo treatment — chrome that orients without overpowering the descent.",
-    year: "2026",
-    role: "Navigation design, WebGL micro-experience, responsive shell",
-    services: ["WEB", "STRATEGY"],
-    challenge:
-      "Standard sticky navbars flatten the spine metaphor into another hamburger menu. The studio needed wayfinding that felt like index marks on the column — visible on the homepage, restrained elsewhere, and usable on phone widths.",
-    approach: [
-      "Designed a spine dock with section-linked nodes and a mobile index toggle tied to the same section map.",
-      "Built a nav skull canvas with glitch and energy states that respond to scroll speed and interaction without blocking content.",
-      "Split chrome behavior by route: fixed spine nav and logo on home, sticky mark and simplified header on work and case pages.",
-      "Resolved logo overlap on inner pages with void gradients and shell padding tuned to the mark footprint.",
-    ],
-    outcome:
-      "Navigation that reads as part of the anatomy system — orienting visitors through the descent on home and getting out of the way when they open work or send a brief.",
-  },
 ];
 
 const previewSlugs = [
-  "spine-studio-site",
-  "spine-descent-journey",
+  "pitchiq",
+  "cadence-hf",
+  "ar-surgical-nav-prototype",
   "cg-investment-holdings",
   "seo-landing-page-framework",
-  "work-specimen-archive",
 ];
 
 export function getPreviewCaseStudies() {

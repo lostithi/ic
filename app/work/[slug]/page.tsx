@@ -90,6 +90,16 @@ export default async function WorkCasePage({ params }: WorkCasePageProps) {
               <p className="mt-2 font-mono-ui text-sm uppercase leading-[1.6] tracking-[0.05em]">
                 {study.year}
               </p>
+              {study.repo ? (
+                <a
+                  href={study.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex font-mono-ui text-[11px] uppercase tracking-[0.18em] underline decoration-white/30 underline-offset-4"
+                >
+                  View repo →
+                </a>
+              ) : null}
             </div>
           </div>
 
